@@ -1,11 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home/Home";
+import Login from "./pages/Login/Login/Login";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 function App() {
   return (
-    <div className="container">
-      <h2 className='text-center display-2 my-5'>Welcome to MedicineBD</h2>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
   );
 }
 
