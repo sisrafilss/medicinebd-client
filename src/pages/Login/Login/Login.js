@@ -29,7 +29,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = (data) => { 
     // Login user using email and passworld
     loginWithEmailAndPassword(data.email, data.password, navigate, location);
     console.log(data);
