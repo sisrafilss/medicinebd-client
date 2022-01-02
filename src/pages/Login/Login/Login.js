@@ -1,12 +1,29 @@
-import { Box, Button, Container, CssBaseline, Typography } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import useFirebase from "../../../hooks/useFirebase";
 import "./Login.css";
 const logo = "https://medicina.aftermotion.com/color-1/images/logo.png";
 
 const Login = () => {
+  const {
+    user,
+    authError,
+    loading,
+    signInWithGoogle,
+    loginWithEmailAndPassword,
+  } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // handle google sign in
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(navigate, location);
+  };
+
+  // React hook form
   const {
     register,
     handleSubmit,
@@ -14,7 +31,7 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     // Login user using email and passworld
-    // loginWithEmailAndPassword(data.email, data.password, navigate, location);
+    loginWithEmailAndPassword(data.email, data.password, navigate, location);
     console.log(data);
   };
   return (
@@ -58,13 +75,13 @@ const Login = () => {
           />
         </form>
         <div className="mt-4 d-grid">
-          <button className="btn btn-success">
+          <button onClick={handleGoogleSignIn} className="btn btn-success">
             <i className="fab fa-google text-light"></i> &nbsp; &nbsp; Continue
             with Google
           </button>
         </div>
 
-        {/* {loading && (
+        {loading && (
           <div className="text-center mt-4">
             <div className="spinner-border text-primary"></div>
           </div>
@@ -74,7 +91,7 @@ const Login = () => {
           <div className="alert alert-danger mt-4" role="alert">
             {authError}
           </div>
-        )} */}
+        )}
       </div>
       <div
         className="border mt-4"

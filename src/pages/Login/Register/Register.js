@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Register = () => {
-
+  const {registerUser, loading, authError} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
     // React hook form
   const {
@@ -17,7 +20,7 @@ const Register = () => {
     if (data.password === data.password2) {
       const fullName = `${data.firstName} ${data.lastName}`;
       // Register new user based on data
-    //   registerUser(fullName, data.email, data.password, navigate, location);
+      registerUser(fullName, data.email, data.password, navigate, location);
     console.log(data);
     } else if (data.password !== data.password2) {
       alert("Password Did not Matched");
@@ -97,7 +100,7 @@ const Register = () => {
             value="Register"
           />
         </form>
-        {/* {loading && (
+        {loading && (
           <div className="text-center">
             <div className="spinner-border text-primary"></div>
           </div>
@@ -107,7 +110,7 @@ const Register = () => {
           <div className="alert alert-danger mt-4" role="alert">
             {authError}
           </div>
-        )} */}
+        )}
       </div>
       <div
         className="border mt-4"
