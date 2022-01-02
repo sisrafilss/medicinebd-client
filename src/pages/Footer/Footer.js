@@ -32,10 +32,10 @@ const Footer = () => {
                             </div>
 
                             <div className='col social-media  mt-3'>
-                                <a href="#" target="_blank"><i class=" fab fa-facebook-f"></i></a>
-                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="#" target="_blank"><i className=" fab fa-facebook-f"></i></a>
+                                <a href="#" target="_blank"><i className="fab fa-instagram"></i></a>
+                                <a href="#" target="_blank"><i className="fab fa-linkedin-in"></i></a>
+                                <a href="#" target="_blank"><i className="fab fa-twitter"></i></a>
 
                             </div>
                         </div>
