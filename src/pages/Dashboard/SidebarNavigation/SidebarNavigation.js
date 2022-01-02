@@ -9,6 +9,10 @@ const SidebarNavigation = () => {
         <Link to="add-product" className="nav-link">
           Add Product
         </Link>
+        <br />
+        <Link to="manage-product" className="nav-link">
+          Manage Product
+        </Link>
       </ListItem>
     </>
   );
