@@ -11,7 +11,7 @@ const Testimonials = () => {
     fetch("./userReviews.json")
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
-  });
+  }, []);
 
   var settings = {
     dots: false,
