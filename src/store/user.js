@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userInfo: {},
-  loading: null,
+  loading: true,
   error: "",
   apiResponse: {},
   admin: null,
@@ -20,6 +20,7 @@ const user = createSlice({
       state.userInfo.displayName = displayName;
       state.userInfo.email = email;
       state.userInfo.photoURL = photoURL;
+      state.loading = false;
     },
     setAuthError: (state, action) => {
       state.error = action.payload.error;

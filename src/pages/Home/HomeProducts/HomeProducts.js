@@ -8,7 +8,7 @@ const HomeProducts = () => {
     <Box sx={{ mb: 2 }}>
       <BabyProducts />
       <HerbalProducts />
-    </Box>
+    </Box> 
   );
 };
 
