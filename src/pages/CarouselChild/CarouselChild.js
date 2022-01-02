@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CarouselChild = ({ active, carousel }) => {
     return (
@@ -11,7 +12,7 @@ const CarouselChild = ({ active, carousel }) => {
                     corrupti.</p>
 
                 <div class="slider-btn">
-                    <button class=" custom-btn">View All Product</button>
+                    <button class=" custom-btn"><Link to="/allproduct">View All Product</Link></button>
                     <button class="custom-btn">Book</button>
                 </div>
             </div>
