@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const Product = (props) => {
-  const { id, name, img, category, price } = props.product;
+  const { name, img, price } = props.product;
 
   const useStyle = makeStyles({
     navBtn: {
@@ -26,7 +26,7 @@ const Product = (props) => {
   const { navBtn, btnColor } = useStyle();
 
   return (
-    <Grid sx={{ mt: 2 }} item xs={4} sm={4} md={4}>
+    <Grid sx={{ mt: 2, mb: 8 }} item xs={4} sm={4} md={4}>
       <Card sx={{ minWidth: 275, border: 0, boxShadow: 2 }}>
         <CardMedia
           component="img"

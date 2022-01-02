@@ -1,10 +1,14 @@
+import { Box } from "@mui/material";
 import React from "react";
+import BabyProducts from "./BabyProducts";
+import HerbalProducts from "./HerbalProducts";
 
 const HomeProducts = () => {
   return (
-    <div>
-      <h2>Home Products</h2>
-    </div>
+    <Box sx={{ mb: 2 }}>
+      <BabyProducts />
+      <HerbalProducts />
+    </Box>
   );
 };
 

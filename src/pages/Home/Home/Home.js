@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import Navigation from "../../Shared/Navigation/Navigation";
-import BabyProducts from "../HomeProducts/BabyProducts";
+import HomeProducts from "../HomeProducts/HomeProducts";
 import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
       <Navigation />
       <Header></Header>
       <Testimonials />
-      <BabyProducts />
+      <HomeProducts />
       <Footer></Footer>
     </div>
   );

@@ -6,7 +6,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from "../../Product/Product";
 
-const BabyProducts = () => {
+const HerbalProducts = () => {
   const [products, setProducts] = useState([]);
 
   //get all packages
@@ -18,9 +18,9 @@ const BabyProducts = () => {
       });
   }, []);
 
-  const babyProducts = products.filter((p) => p.catagory === "baby");
+  const herbalProducts = products.filter((p) => p.catagory === "herbal");
 
-  const homeBabyProducts = babyProducts.slice(0, 3);
+  const homeHerbalProducts = herbalProducts.slice(0, 3);
 
   return (
     <Box sx={{ background: "#F6F6F6" }}>
@@ -42,7 +42,7 @@ const BabyProducts = () => {
             variant="h6"
             component="div"
           >
-            Baby & Mom Care
+            Herbal Care
           </Typography>
           <Typography
             sx={{
@@ -64,7 +64,7 @@ const BabyProducts = () => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {homeBabyProducts.map((product) => (
+          {homeHerbalProducts.map((product) => (
             <Product key={product.id} product={product}></Product>
           ))}
         </Grid>
@@ -73,4 +73,4 @@ const BabyProducts = () => {
   );
 };
 
-export default BabyProducts;
+export default HerbalProducts;
