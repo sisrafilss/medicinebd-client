@@ -6,7 +6,7 @@ import Navigation from "../../Shared/Navigation/Navigation";
 const Home = () => {
   return (
     <div>
-      <Navigation />
+      {/* <Navigation /> */}
       <Header></Header>
       <Footer></Footer>
     </div>
