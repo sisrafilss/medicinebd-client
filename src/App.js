@@ -8,6 +8,7 @@ import PrivatRoute from "./PrivatRoute/PrivatRoute";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import About from "./pages/About/About/About";
 import ViewDeatilsPage from "./pages/ViewDeatilsPage/ViewDeatilsPage/ViewDeatilsPage";
+import AddToCartPage from "./pages/AddToCartPage/AddToCartPage/AddToCartPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/viewdetails" element={<ViewDeatilsPage />} />
+      <Route path="/cart" element={<AddToCartPage />} />
       <Route path="*" element={<PageNotFound />} />
 
       <Route
