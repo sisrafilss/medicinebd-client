@@ -83,6 +83,7 @@ const ManageBanner = () => {
         </div>
       </div>
 
+      {/*Modal for Add Slide  */}
       <div
         class="modal fade mt-5"
         id="exampleModal"
@@ -158,6 +159,14 @@ const ManageBanner = () => {
                   className="btn btn-primary fw-bold ml-auto"
                   value="Add"
                 />
+
+                <button
+                  type="button"
+                  class="btn btn-secondary ms-3"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
               </form>
             </div>
           </div>
