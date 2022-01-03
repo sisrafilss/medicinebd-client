@@ -5,6 +5,7 @@ import Newsletter from "../Newsletter/Newsletter";
 import HomeProducts from "../HomeProducts/HomeProducts";
 import Footer from "../../Footer/Footer";
 import Testimonials from "../Testimonials/Testimonials";
+import ContactForm from "../ContactForm/ContactForm";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Newsletter />
       <HomeProducts />
       <Testimonials />
+      <ContactForm />
       <Footer />
     </>
   );
