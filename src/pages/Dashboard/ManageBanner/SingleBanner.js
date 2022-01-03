@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const SingleBanner = ({ banner, slideNumber }) => {
-  const { title, image, description } = banner;
+  const { _id, title, image, description } = banner;
 
   // React Hook Form
   const {
@@ -26,6 +26,14 @@ const SingleBanner = ({ banner, slideNumber }) => {
     if (true) {
       alert("Product Added Successfully");
       reset();
+    }
+  };
+
+  //   Handle Delete Slide
+  const handleDeleteSlide = (id) => {
+    const proceed = window.confirm("Are you sure, want to delete?");
+    if (proceed) {
+      alert(`Slide deleted successfully, id: ${id}`);
     }
   };
 
@@ -59,7 +67,11 @@ const SingleBanner = ({ banner, slideNumber }) => {
             </div>
             <div className="col-6">
               <div class="d-grid gap-2">
-                <button class="btn btn-outline-danger" type="button">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  onClick={() => handleDeleteSlide(_id)}
+                >
                   Delete
                 </button>
               </div>
