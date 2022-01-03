@@ -1,0 +1,18 @@
+.about-bg{
+    background:linear-gradient(0deg, rgba(117, 18, 197, 0.301), rgba(109, 16, 185, 0.582)), url('https://medsy-minimal.vercel.app/_next/static/images/slider_01-377627f2f93171e23bb3f38a2eae1ae6.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 70vh;
+}
+
+.explore-head{
+    color: white;
+}
+
+.item{
+    text-decoration: none;
+    color: white;
+}
+.item:hover{
+    color: white;
+}

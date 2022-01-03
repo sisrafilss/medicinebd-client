@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import Slider from "react-slick";
+import Slider from 'react-slick';
 import Review from "./Review";
 
 const Testimonials = () => {
