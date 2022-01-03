@@ -20,6 +20,11 @@ const SidebarNavigation = () => {
           Manage Product
         </Link>
       </ListItem>
+      <ListItem button>
+        <Link to="my-orders" className="nav-link text-secondary">
+          My Orders
+        </Link>
+      </ListItem>
     </>
   );
 };
