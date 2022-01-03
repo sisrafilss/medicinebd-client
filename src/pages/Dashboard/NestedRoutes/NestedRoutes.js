@@ -11,7 +11,7 @@ const NestedRoutes = () => {
         <Route path="add-product" element={<AddProduct />} />
       </Routes>
       <Routes>
-        <Route path="add-product" element={<ManageProducts />} />
+        <Route path="manage-product" element={<ManageProducts />} />
       </Routes>
     </Box>
   );
