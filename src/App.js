@@ -7,6 +7,7 @@ import ViewAllProduct from "./pages/ViewAllProduct/ViewAllProduct";
 import Register from "./pages/Login/Register/Register";
 import PrivatRoute from "./PrivatRoute/PrivatRoute";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
+import AddToCart from "./pages/AddToCart/AddToCart/AddToCart";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/allproduct" element={<ViewAllProduct />} />
+      <Route path="/cart" element={<AddToCart />} />
       <Route path="*" element={<PageNotFound />} />
-      
+
       <Route
         path="/dashboard/*"
         element={

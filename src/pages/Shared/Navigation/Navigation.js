@@ -111,6 +111,7 @@ const Navigation = () => {
               <span className="text-light"> {user?.displayName} </span>
             </div>
           )}
+          <div><Link to="/cart"><i class="fas fa-shopping-cart"></i></Link></div>
         </div>
       </div>
     </nav>
