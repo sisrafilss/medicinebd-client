@@ -16,7 +16,7 @@ const About = () => {
     return (
         <div>
             <Navigation></Navigation>
-            <div className="about-bg d-flex justify-content-center align-items-center ">
+            <div className="about-bg d-flex justify-content-center align-items-center">
                 <h2 className="text-center explore-head"> <Link className="item" to="/home">Home</Link> || About Us</h2>
             </div>
 
