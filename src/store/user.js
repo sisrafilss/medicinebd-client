@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiCallBegan } from "./api";
 
 const initialState = {
   userInfo: {},
-  loading: true,
+  loading: null,
   error: "",
   apiResponse: {},
   admin: null,
@@ -44,3 +45,13 @@ export const {
 export default user.reducer;
 
 // Action Creators
+const url = "/users";
+
+// Add new user to db for registration using email and password
+export const saveUserToDB = (data) =>
+  apiCallBegan({
+    url,
+    data,
+    method: "post",
+    onSuccess: addUserToDB.type,
+  });
