@@ -19,7 +19,6 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/viewdetails" element={<ViewDeatilsPage />} />
-      <Route path="/cart" element={<AddToCartPage />} />
       <Route path="*" element={<PageNotFound />} />
 
       <Route
