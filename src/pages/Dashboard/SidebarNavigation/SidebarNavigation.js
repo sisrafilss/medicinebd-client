@@ -11,7 +11,7 @@ const SidebarNavigation = () => {
         </Link>
       </ListItem>
       <ListItem button>
-        <Link to="manage-product" className="nav-link text-dark">
+        <Link to="manage-product" className="nav-link text-secondary">
           Manage Product
         </Link>
       </ListItem>
