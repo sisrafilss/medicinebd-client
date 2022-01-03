@@ -55,3 +55,19 @@ export const saveUserToDB = (data) =>
     method: "post",
     onSuccess: addUserToDB.type,
   });
+
+// Update (upsert) user info to db for Google Login
+export const upsertUser = (data) =>
+  apiCallBegan({
+    url,
+    data,
+    method: "put",
+    onSuccess: addUserToDB.type,
+  });
+
+// Check an user role is admin or not
+export const checkAdminStatus = (email) =>
+  apiCallBegan({
+    url: url + "/" + email,
+    onSuccess: setAdminStatus.type,
+  });

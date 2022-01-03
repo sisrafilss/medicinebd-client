@@ -12,7 +12,13 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import initializeAuthentication from "../pages/Login/Firebase/firebase.init";
-import { saveUserToDB, setAuthError, setLoading, setUser } from "../store/user";
+import {
+  saveUserToDB,
+  setAuthError,
+  setLoading,
+  setUser,
+  upsertUser,
+} from "../store/user";
 
 initializeAuthentication();
 
@@ -103,7 +109,7 @@ const useFirebase = () => {
         dispatch(setAuthError({ error: "" }));
 
         // Upsert user data to database
-        // dispatch(upsertUser({ name: user.displayName, email: user.email }));
+        dispatch(upsertUser({ name: user.displayName, email: user.email }));
 
         // Redirect user to the page where they come from
         redirectInitialPage(navigate, location);
