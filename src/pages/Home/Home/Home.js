@@ -5,6 +5,7 @@ import Newsletter from "../Newsletter/Newsletter";
 import HomeProducts from "../HomeProducts/HomeProducts";
 import Footer from "../../Footer/Footer";
 import Testimonials from "../Testimonials/Testimonials";
+import ServiceSummary from "../ServiceSummary/ServiceSummary";
 
 const Home = () => {
   return (
