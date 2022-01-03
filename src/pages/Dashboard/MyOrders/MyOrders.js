@@ -39,7 +39,7 @@ const MyOrders = () => {
       </div>
       <div>
         {orders.map((order) => (
-        <SingleOrder key={order._id} order={order} />
+          <SingleOrder key={order._id} order={order} />
         ))}
       </div>
     </div>
