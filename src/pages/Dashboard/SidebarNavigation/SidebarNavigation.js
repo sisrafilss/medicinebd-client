@@ -6,11 +6,12 @@ const SidebarNavigation = () => {
   return (
     <>
       <ListItem button>
-        <Link to="add-product" className="nav-link">
+        <Link to="add-product" className="nav-link text-secondary">
           Add Product
         </Link>
-        <br />
-        <Link to="manage-product" className="nav-link">
+      </ListItem>
+      <ListItem button>
+        <Link to="manage-product" className="nav-link text-dark">
           Manage Product
         </Link>
       </ListItem>
