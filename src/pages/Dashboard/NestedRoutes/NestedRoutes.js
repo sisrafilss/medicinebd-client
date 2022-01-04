@@ -4,12 +4,15 @@ import { Route, Routes } from "react-router-dom";
 import AddProduct from "../AddProduct/AddProduct";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import ManageBanner from "../ManageBanner/ManageBanner";
+import MyOrders from "../MyOrders/MyOrders";
 
 import ManageProducts from "../ManageProducts/ManageProducts";
+
 
 const NestedRoutes = () => {
   return (
     <Box>
+      {/* Admin Routes */}
       <Routes>
         <Route path="add-product" element={<AddProduct />} />
       </Routes>
@@ -21,6 +24,9 @@ const NestedRoutes = () => {
       </Routes>
       <Routes>
         <Route path="make-admin" element={<MakeAdmin />} />
+      </Routes>
+      <Routes>
+        <Route path="my-orders" element={<MyOrders />} />
       </Routes>
     </Box>
   );

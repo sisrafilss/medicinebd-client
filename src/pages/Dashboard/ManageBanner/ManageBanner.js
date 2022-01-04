@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import SingleBanner from "./SingleBanner";
 
+// Placehoder data
 const bannerData = [
   {
     _id: 1,
