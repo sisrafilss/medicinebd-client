@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AddProduct from "../AddProduct/AddProduct";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
+
 import ManageProducts from "../ManageProducts/ManageProducts";
 
 const NestedRoutes = () => {
