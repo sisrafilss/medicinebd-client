@@ -1,45 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addBannerToDB, setBannerAdded } from "../../../store/adminDashboard";
+import {
+  addBannerToDB,
+  loadBanners,
+  setBannerAdded,
+} from "../../../store/adminDashboard";
 import SingleBanner from "./SingleBanner";
 
-// Placehoder data
-const bannerData = [
-  {
-    _id: 1,
-    title: "Taking Good Care Of Yourself",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius adipisci quae dolorum in molestiae corrupti.",
-    image: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a1.jpg",
-  },
-  {
-    _id: 2,
-    title: "Taking Good Care Of Yourself",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius adipisci quae dolorum in molestiae corrupti.",
-    image: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a2.jpg",
-  },
-  {
-    _id: 3,
-    title: "Taking Good Care Of Yourself",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius adipisci quae dolorum in molestiae corrupti.",
-    image: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a3.jpg",
-  },
-];
+
 
 const ManageBanner = () => {
   const dispatch = useDispatch();
+  const banners = useSelector(state => state.entities.adminDashboard.banners.allBanner)
   const bannerAdded = useSelector(
-    (state) => state.entities.adminDashboard.bannreAdded
+    (state) => state.entities.adminDashboard.banners.bannreAdded
   );
 
+  // Display success message for 5 seconds
   setTimeout(() => {
     dispatch(setBannerAdded({ status: false }));
   }, 5000);
 
   let slideNumber = 0;
+
+  // Load Banners from Database
+  useEffect(() => {
+    dispatch(loadBanners());
+  }, []);
 
   // React Hook Form for add a slide
   const {
@@ -68,7 +56,7 @@ const ManageBanner = () => {
       </div>
       <div className="container">
         <div className="row g-4">
-          {bannerData.map((banner) => (
+          {banners.map((banner) => (
             <SingleBanner
               key={banner._id}
               slideNumber={++slideNumber}

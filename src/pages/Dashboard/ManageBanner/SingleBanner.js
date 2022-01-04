@@ -42,7 +42,7 @@ const SingleBanner = ({ banner, slideNumber }) => {
       <div className="card">
         <h3 className="h3 text-center card-header">Slide {slideNumber}</h3>
         <div>
-          <img src={image} class="img-fluid rounded-start h-100" alt="..." />
+          <img src={`data:image/jpeg;base64,${image}`} class="img-fluid rounded-start h-100" alt="..." />
         </div>
 
         <div class="card-body">

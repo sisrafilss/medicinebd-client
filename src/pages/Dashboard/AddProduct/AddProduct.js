@@ -10,7 +10,7 @@ const AddProduct = () => {
   const dispatch = useDispatch();
 
   const productAdded = useSelector(
-    (state) => state.entities.adminDashboard.productAdded
+    (state) => state.entities.adminDashboard.products.productAdded
   );
 
   // React Hook Form
