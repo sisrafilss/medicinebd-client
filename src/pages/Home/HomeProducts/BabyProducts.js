@@ -24,7 +24,7 @@ const BabyProducts = () => {
 
   return (
     <Box sx={{ background: "#F6F6F6" }}>
-      <Container>
+      <Container sx={{ pt: 4 }}>
         <Divider />
         <Box
           sx={{
