@@ -8,6 +8,7 @@ import MyOrders from "../MyOrders/MyOrders";
 
 import ManageProducts from "../ManageProducts/ManageProducts";
 import Review from "../Review/Review";
+import ManageUsers from "../ManageUsers/ManageUsers";
 
 const NestedRoutes = () => {
   return (
@@ -24,6 +25,9 @@ const NestedRoutes = () => {
       </Routes>
       <Routes>
         <Route path="make-admin" element={<MakeAdmin />} />
+      </Routes>
+      <Routes>
+        <Route path="manage-users" element={<ManageUsers />} />
       </Routes>
       <Routes>
         <Route path="my-orders" element={<MyOrders />} />
