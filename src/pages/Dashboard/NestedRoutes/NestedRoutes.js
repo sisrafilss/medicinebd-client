@@ -7,7 +7,7 @@ import ManageBanner from "../ManageBanner/ManageBanner";
 import MyOrders from "../MyOrders/MyOrders";
 
 import ManageProducts from "../ManageProducts/ManageProducts";
-
+import Review from "../Review/Review";
 
 const NestedRoutes = () => {
   return (
@@ -27,6 +27,9 @@ const NestedRoutes = () => {
       </Routes>
       <Routes>
         <Route path="my-orders" element={<MyOrders />} />
+      </Routes>
+      <Routes>
+        <Route path="review" element={<Review />} />
       </Routes>
     </Box>
   );

@@ -33,6 +33,11 @@ const SidebarNavigation = () => {
           My Orders
         </Link>
       </ListItem>
+      <ListItem button>
+        <Link to="review" className="nav-link text-secondary">
+          Review
+        </Link>
+      </ListItem>
     </>
   );
 };
