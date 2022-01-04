@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 const DetailsContainer = styled.div`
   height: 100%;
@@ -21,6 +23,7 @@ const Header = styled.h1`
   color: #262fec;
   font-weight: 700;
   font-size: 45px;
+  padding-top: 5px;
 `;
 
 const SubHeader = styled.h3`
@@ -61,9 +64,9 @@ const EmailInput = styled.input`
 
 const SubscribeButton = styled.button`
   position: absolute;
-  right: -10px;
+  right: -17px;
   top: 0;
-  height: 100%;
+  height: 75%;
   border: none;
   outline: none;
   color: #fff;
@@ -82,6 +85,28 @@ const SubscribeButton = styled.button`
 `;
 
 const Details = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    const { email } = data;
+    const subcriptionData = {
+      email,
+    };
+    console.log(subcriptionData);
+
+    if (true) {
+      Swal.fire(
+        "Good job!",
+        "You Subscription Successfully Completed!",
+        "success"
+      );
+      reset();
+    }
+  };
   return (
     <DetailsContainer>
       <InnerContainer>
@@ -91,10 +116,19 @@ const Details = () => {
           You will never miss our podcasts, latest news, etc. Our newsletter is
           once a week, every friday.
         </Text>
-        <FormGroup>
-          <EmailInput type="text" placeholder="example@email.com" />
-          <SubscribeButton>Subscribe</SubscribeButton>
-        </FormGroup>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormGroup style={{ paddingBottom: "15px" }}>
+            <EmailInput
+              type="text"
+              placeholder="example@email.com"
+              {...register("email", { required: true })}
+            />
+            <SubscribeButton type="submit">Subscribe</SubscribeButton>
+          </FormGroup>
+        </form>
+        {errors.email && (
+          <span className="text-danger">Please enter a valid email</span>
+        )}
       </InnerContainer>
     </DetailsContainer>
   );

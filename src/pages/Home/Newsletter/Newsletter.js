@@ -22,7 +22,7 @@ const NewsLetterContainer = styled.div`
 
 const NewsletterStyled = styled.div`
   width: 100%;
-  height: 350px;
+  height: 420px;
   display: flex;
   position: relative;
   background-color: rgba(255, 255, 255, 0.2);
@@ -31,7 +31,7 @@ const NewsletterStyled = styled.div`
 const Newsletter = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Container>
+      <Container sx={{ mt: 4 }}>
         <NewsLetterContainer>
           <NewsletterStyled>
             <Details />

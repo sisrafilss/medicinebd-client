@@ -5,10 +5,10 @@ import HerbalProducts from "./HerbalProducts";
 
 const HomeProducts = () => {
   return (
-    <Box sx={{ mb: 2 }}>
+    <Box>
       <BabyProducts />
       <HerbalProducts />
-    </Box> 
+    </Box>
   );
 };
 

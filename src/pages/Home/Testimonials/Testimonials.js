@@ -62,7 +62,7 @@ const Testimonials = () => {
             color: "#1F1632",
             textAlign: "center",
           }}
-          variant="h6"
+          variant="h4"
           component="div"
         >
           Testimonials
