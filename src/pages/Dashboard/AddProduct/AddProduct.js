@@ -30,8 +30,10 @@ const AddProduct = () => {
     formData.append("price", price);
 
     formData.append("description", description);
+
     // Send form data to Server
     dispatch(addProductData(formData));
+    
     reset();
     // setLoader(true);
   };
