@@ -6,6 +6,7 @@ import HomeProducts from "../HomeProducts/HomeProducts";
 import Footer from "../../Footer/Footer";
 import Testimonials from "../Testimonials/Testimonials";
 import ContactForm from "../ContactForm/ContactForm";
+import ServiceSummary from "../ServiceSummary/ServiceSummary";
 
 const Home = () => {
   return (
