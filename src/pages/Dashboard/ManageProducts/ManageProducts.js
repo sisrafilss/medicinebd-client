@@ -16,6 +16,19 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import Swal from "sweetalert2";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 800,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+};
 
 const ManageProducts = () => {
   let i = 1;
@@ -106,12 +119,25 @@ const ManageProducts = () => {
   };
 
   const handleDelete = (id) => {
-    const procced = window.confirm("Are you sure, you want to delete?");
-    if (procced) {
-      alert("Product Deleted Successfully!");
-      //   setReload(!reload);
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Product has been deleted.", "success");
+        //   setReload(!reload);
+      }
+    });
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box>
@@ -143,7 +169,7 @@ const ManageProducts = () => {
           </Select>
         </FormControl>
       </Box>
-      {catagoryProduts.length > 0 ? (
+      {catagoryProduts.length > 0 && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
@@ -176,7 +202,7 @@ const ManageProducts = () => {
                     >
                       <DeleteIcon sx={{ color: "red" }} />
                     </button>
-                    <button style={{ border: "none" }}>
+                    <button onClick={handleOpen} style={{ border: "none" }}>
                       <EditIcon sx={{ color: "blue" }} />
                     </button>
                   </TableCell>
@@ -185,9 +211,23 @@ const ManageProducts = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      ) : (
-        <TableContainer></TableContainer>
       )}
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
     </Box>
   );
 };
