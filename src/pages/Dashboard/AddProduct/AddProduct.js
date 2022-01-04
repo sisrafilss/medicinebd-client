@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addProductData } from "../../../store/adminDashboard";
 import "./AddProduct.css";
 
 const AddProduct = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Set page title
   // dispatch(setPageTitle({ title: "Add Rent Flat" }));
@@ -20,16 +22,21 @@ const AddProduct = () => {
     const product = {
       category,
       name,
-      image,
+      image: image[0],
       price,
       description: description.split("\n"),
     };
-    console.log(product);
-    //   dispatch(addRentFlat(saleFlatInfo));
+
+    const formData = new FormData();
+
+    formData.append('product', product);
+
+    // console.log(formData);
+      dispatch(addProductData(formData));
 
     if (true) {
       alert("Product Added Successfully");
-      reset();
+      // reset();
     }
   };
 
@@ -88,6 +95,7 @@ const AddProduct = () => {
             <div class="input-group mb-4">
               <input
                 type="file"
+                accept="image/*"
                 class="form-control"
                 id="inputGroupFile02"
                 {...register("image", { required: true })}
