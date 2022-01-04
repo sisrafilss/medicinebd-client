@@ -6,14 +6,19 @@ const SidebarNavigation = () => {
   return (
     <>
       <ListItem button>
-        <Link to="add-product" className="nav-link">
+        <Link to="add-product" className="nav-link text-secondary">
           Add Product
         </Link>
-        <br />
-        <Link to="manage-product" className="nav-link">
+      </ListItem>
+
+      <ListItem button>
+      <Link to="manage-product" className="nav-link text-secondary">
           Manage Product
         </Link>
-        <Link to="make-admin" className="nav-link">
+      </ListItem>
+
+      <ListItem button>
+        <Link to="make-admin" className="nav-link text-secondary">
           Make Admin
         </Link>
       </ListItem>
