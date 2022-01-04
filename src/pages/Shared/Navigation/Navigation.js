@@ -72,7 +72,7 @@ const Navigation = () => {
               </ul>
             </li>
             <li class="nav-item">
-              <Link to="" className="nav-link topic">
+              <Link to="allproduct" className="nav-link topic">
                 All Products
               </Link>
             </li>
