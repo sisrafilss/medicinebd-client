@@ -13,6 +13,9 @@ const SidebarNavigation = () => {
         <Link to="manage-product" className="nav-link">
           Manage Product
         </Link>
+        <Link to="make-admin" className="nav-link">
+          Make Admin
+        </Link>
       </ListItem>
     </>
   );
