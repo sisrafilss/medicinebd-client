@@ -2,20 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 
 const initialState = {
-  apiResponse: {},
+  productAdded: false,
 };
 
 const adminDashboard = createSlice({
   name: "adminDashbord",
   initialState,
   reducers: {
-    setApiResponse: (state, action) => {
-      console.log(action.payload);
+    productAddedSuccess: (state, action) => {
+      if (action.payload.insertedId) {
+        state.productAdded = true;
+      }
+    },
+    setProductAdded: (state, action) => {
+      state.productAdded = action.payload.status;
     },
   },
 });
 
-export const { setApiResponse } = adminDashboard.actions;
+export const { productAddedSuccess, setProductAdded } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
 // Action Creators
@@ -25,6 +30,6 @@ export const addProductData = (data) =>
   apiCallBegan({
     url,
     method: "post",
-    data: { data },
-    onSuccess: setApiResponse.type,
+    data,
+    onSuccess: productAddedSuccess.type,
   });

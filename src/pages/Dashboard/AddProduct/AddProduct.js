@@ -1,14 +1,17 @@
-import React from "react";
+import { LinearProgress, Stack } from "@mui/material";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { addProductData } from "../../../store/adminDashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductData, setProductAdded } from "../../../store/adminDashboard";
 import "./AddProduct.css";
 
 const AddProduct = () => {
+  // const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
 
-  // Set page title
-  // dispatch(setPageTitle({ title: "Add Rent Flat" }));
+  const productAdded = useSelector(
+    (state) => state.entities.adminDashboard.productAdded
+  );
 
   // React Hook Form
   const {
@@ -18,116 +21,151 @@ const AddProduct = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const { category, name, description, image, price } = data;
-    const product = {
-      category,
-      name,
-      image: image[0],
-      price,
-      description: description.split("\n"),
-    };
+    let { category, name, description, image, price } = data;
 
     const formData = new FormData();
+    formData.append("category", category);
+    formData.append("name", name);
+    formData.append("image", image[0]);
+    formData.append("price", price);
 
-    formData.append('product', product);
-
-    // console.log(formData);
-      dispatch(addProductData(formData));
-
-    if (true) {
-      alert("Product Added Successfully");
-      // reset();
-    }
+    formData.append("description", description);
+    // Send form data to Server
+    dispatch(addProductData(formData));
+    reset();
+    // setLoader(true);
   };
 
   return (
     <div>
       <div className="form-container">
-        <div>
-          <h2 className="mb-4">Insert Product Detail</h2>
-        </div>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-3">
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              {...register("category", { required: true })}
+        {productAdded && (
+          <div>
+            <div
+              className="alert alert-success alert-dismissible fade show"
+              role="alert"
             >
-              <option>Select Category</option>
-              <option value="Baby and Mom Care">Baby and Mom Care</option>
-              <option value="Harbal">Harbal</option>
-              <option value="Harbal">Harbal</option>
-            </select>
-            {errors.category && (
-              <span className="text-danger">Please select a category</span>
-            )}
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Product Name"
-              {...register("name", { required: true })}
-            />
-            {errors.name && (
-              <span className="text-danger">Please enter a name</span>
-            )}
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Description</label>
-            <textarea
-              className="form-control"
-              rows="3"
-              placeholder="Enter detail about product"
-              {...register("description", { required: true })}
-            ></textarea>
-            {errors.description && (
-              <span className="text-danger">Please enter a description</span>
-            )}
-          </div>
-
-          <div className="mt-4">
-            <span className="mb-2 d-inline-block">Upload Image</span>
-            <div class="input-group mb-4">
-              <input
-                type="file"
-                accept="image/*"
-                class="form-control"
-                id="inputGroupFile02"
-                {...register("image", { required: true })}
-              />
-              <label class="input-group-text" htmlFor="inputGroupFile02">
-                Upload
-              </label>
+              Product Added Successfully!
+              <button
+                onClick={() => dispatch(setProductAdded({ status: true }))}
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
             </div>
-            {errors.image && (
-              <span className="text-danger">Please choose an image</span>
-            )}
+            <div>
+              <button
+                onClick={() => dispatch(setProductAdded({ status: false }))}
+                // onClick={() => setLoader(false)}
+                className="btn btn-success"
+              >
+                Add Another Product
+              </button>
+            </div>
           </div>
+        )}
 
-          <div className="mb-3">
-            <label className="form-label">Price</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Price in integer value"
-              {...register("price", { required: true })}
-            />
-            {errors.price && (
-              <span className="text-danger">Price is mandatory</span>
-            )}
+        {!productAdded && (
+          <div>
+            <div>
+              <h2 className="mb-4">Insert Product Detail</h2>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-3">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  {...register("category", { required: true })}
+                >
+                  <option>Select Category</option>
+                  <option value="Baby and Mom Care">Baby and Mom Care</option>
+                  <option value="Harbal">Harbal</option>
+                  <option value="Harbal">Harbal</option>
+                </select>
+                {errors.category && (
+                  <span className="text-danger">Please select a category</span>
+                )}
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Product Name"
+                  {...register("name", { required: true })}
+                />
+                {errors.name && (
+                  <span className="text-danger">Please enter a name</span>
+                )}
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Description</label>
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  placeholder="Enter detail about product"
+                  {...register("description", { required: true })}
+                ></textarea>
+                {errors.description && (
+                  <span className="text-danger">
+                    Please enter a description
+                  </span>
+                )}
+              </div>
+
+              <div className="mt-4">
+                <span className="mb-2 d-inline-block">Upload Image</span>
+                <div class="input-group mb-4">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="form-control"
+                    id="inputGroupFile02"
+                    {...register("image", { required: true })}
+                  />
+                  <label class="input-group-text" htmlFor="inputGroupFile02">
+                    Upload
+                  </label>
+                </div>
+                {errors.image && (
+                  <span className="text-danger">Please choose an image</span>
+                )}
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Price</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Price in integer value"
+                  {...register("price", { required: true })}
+                />
+                {errors.price && (
+                  <span className="text-danger">Price is mandatory</span>
+                )}
+              </div>
+
+              <input
+                type="submit"
+                className="btn btn-primary fw-bold"
+                value="Add"
+              />
+            </form>
+
+            {/* {loader && (
+              <Stack
+                sx={{ width: "100%", color: "grey.500", marginTop: "15px" }}
+                spacing={2}
+              >
+                <LinearProgress color="success" />
+              </Stack>
+            )} */}
           </div>
-
-          <input
-            type="submit"
-            className="btn btn-primary fw-bold"
-            value="Add"
-          />
-        </form>
+        )}
       </div>
     </div>
   );
