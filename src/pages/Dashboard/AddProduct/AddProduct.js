@@ -28,7 +28,6 @@ const AddProduct = () => {
     formData.append("name", name);
     formData.append("image", image[0]);
     formData.append("price", price);
-
     formData.append("description", description);
 
     // Send form data to Server

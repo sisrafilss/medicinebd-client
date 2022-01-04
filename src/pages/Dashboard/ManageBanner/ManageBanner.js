@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { addBannerToDB, setBannerAdded } from "../../../store/adminDashboard";
 import SingleBanner from "./SingleBanner";
 
 // Placehoder data
@@ -28,9 +30,18 @@ const bannerData = [
 ];
 
 const ManageBanner = () => {
+  const dispatch = useDispatch();
+  const bannerAdded = useSelector(
+    (state) => state.entities.adminDashboard.bannreAdded
+  );
+
+  setTimeout(() => {
+    dispatch(setBannerAdded({ status: false }));
+  }, 5000);
+
   let slideNumber = 0;
 
-  // React Hook Form
+  // React Hook Form for add a slide
   const {
     register,
     handleSubmit,
@@ -38,22 +49,17 @@ const ManageBanner = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const { category, name, description, image, price } = data;
-    const product = {
-      category,
-      name,
-      image,
-      price,
-      description: description.split("\n"),
-    };
-    console.log(product);
-    //   dispatch(addRentFlat(saleFlatInfo));
+    const { title, description, image } = data;
 
-    if (true) {
-      alert("Product Added Successfully");
-      reset();
-    }
-  }; 
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image", image[0]);
+
+    dispatch(addBannerToDB(formData));
+
+    reset();
+  };
 
   return (
     <div>
@@ -76,7 +82,7 @@ const ManageBanner = () => {
             className="btn btn-lg btn-primary"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#add-slide-form"
           >
             {" "}
             <i class="fa fa-plus"></i> Add Slide
@@ -85,9 +91,10 @@ const ManageBanner = () => {
       </div>
 
       {/*Modal for Add Slide  */}
+
       <div
         class="modal fade mt-5"
-        id="exampleModal"
+        id="add-slide-form"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -169,6 +176,12 @@ const ManageBanner = () => {
                   Close
                 </button>
               </form>
+
+              {bannerAdded && (
+                <div class="alert alert-success mt-4" role="alert">
+                  Slide Added Successfully!
+                </div>
+              )}
             </div>
           </div>
         </div>
