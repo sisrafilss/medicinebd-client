@@ -23,7 +23,7 @@ const ServiceSummary = () => {
       color: "#fff !important",
       textTransform: "none !important",
     },
-  });
+  }); 
 
   const { navBtn, btnColor } = useStyle();
   return (
