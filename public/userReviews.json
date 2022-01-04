@@ -3,7 +3,7 @@
     "id": 1,
     "img": "https://i.ibb.co/n3mvg8R/user1.png",
     "name": "Najmul Ovi",
-    "designation": "CEO, Manpol",
+    
     "text": "They have excellent, responsive technical support. Even if you think you have a dumb question, they are patient and happy to help.",
     "rating": 5
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "img": "https://i.ibb.co/9yCNRGy/user2.png",
     "name": "Najmul Ovi",
-    "designation": "CEO, Manpol",
+    
     "text": "They have excellent, responsive technical support. Even if you think you have a dumb question, they are patient and happy to help.",
     "rating": 3
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "img": "https://i.ibb.co/7kWk9pN/user3.png",
     "name": "Najmul Ovi",
-    "designation": "CEO, Manpol",
+    
     "text": "They have excellent, responsive technical support. Even if you think you have a dumb question, they are patient and happy to help.",
     "rating": 4
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "img": "https://i.ibb.co/9yCNRGy/user2.png",
     "name": "Najmul Ovi",
-    "designation": "CEO, Manpol",
+    
     "text": "They have excellent, responsive technical support. Even if you think you have a dumb question, they are patient and happy to help.",
     "rating": 5
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "img": "https://i.ibb.co/n3mvg8R/user1.png",
     "name": "Najmul Ovi",
-    "designation": "CEO, Manpol",
+    
     "text": "They have excellent, responsive technical support. Even if you think you have a dumb question, they are patient and happy to help.",
     "rating": 3
   },
@@ -43,7 +43,7 @@
     "id": 6,
     "img": "https://i.ibb.co/7kWk9pN/user3.png",
     "name": "Najmul Ovi",
-    "designation": "CEO, Manpol",
+    
     "text": "They have excellent, responsive technical support. Even if you think you have a dumb question, they are patient and happy to help.",
     "rating": 5
   }

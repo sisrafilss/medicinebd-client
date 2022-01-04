@@ -5,15 +5,21 @@ import Newsletter from "../Newsletter/Newsletter";
 import HomeProducts from "../HomeProducts/HomeProducts";
 import Footer from "../../Footer/Footer";
 import Testimonials from "../Testimonials/Testimonials";
+import UploadPreccription from "../UploadPreccription/UploadPreccription";
+import ServiceSummary from "../ServiceSummary/ServiceSummary";
+import ContactForm from "../ContactForm/ContactForm";
 
 const Home = () => {
   return (
     <>
       <Navigation />
       <Header />
+      <ServiceSummary />
       <Newsletter />
+      <UploadPreccription />
       <HomeProducts />
       <Testimonials />
+      <ContactForm />
       <Footer />
     </>
   );
