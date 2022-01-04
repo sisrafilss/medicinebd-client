@@ -11,7 +11,7 @@ import { makeStyles } from "@mui/styles";
 import PreccriptionImg from "../../../assets/services-image/order_medicine.png";
 import CallOrderImg from "../../../assets/services-image/call_to_order.png";
 import HealthcareProductsImg from "../../../assets/services-image/healthcare_products.png";
-
+ 
 const ServiceSummary = () => {
   const useStyle = makeStyles({
     navBtn: {
