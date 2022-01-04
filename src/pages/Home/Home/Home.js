@@ -12,6 +12,7 @@ const Home = () => {
     <>
       <Navigation />
       <Header />
+      <ServiceSummary />
       <Newsletter />
       <HomeProducts />
       <Testimonials />
