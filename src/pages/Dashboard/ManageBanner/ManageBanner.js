@@ -12,6 +12,7 @@ import SingleBanner from "./SingleBanner";
 
 const ManageBanner = () => {
   const dispatch = useDispatch();
+  // Getting banners from store
   const banners = useSelector(state => state.entities.adminDashboard.banners.allBanner)
   const bannerAdded = useSelector(
     (state) => state.entities.adminDashboard.banners.bannreAdded
@@ -27,7 +28,7 @@ const ManageBanner = () => {
   // Load Banners from Database
   useEffect(() => {
     dispatch(loadBanners());
-  }, []);
+  }, [bannerAdded]);
 
   // React Hook Form for add a slide
   const {
@@ -44,6 +45,7 @@ const ManageBanner = () => {
     formData.append("description", description);
     formData.append("image", image[0]);
 
+    // Send banner data to DB
     dispatch(addBannerToDB(formData));
 
     reset();

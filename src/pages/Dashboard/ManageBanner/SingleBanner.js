@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { deleteBanner } from "../../../store/adminDashboard";
 
 const SingleBanner = ({ banner, slideNumber }) => {
+  const dispatch = useDispatch();
+
   const { _id, title, image, description } = banner;
 
   // React Hook Form
@@ -33,7 +37,7 @@ const SingleBanner = ({ banner, slideNumber }) => {
   const handleDeleteSlide = (id) => {
     const proceed = window.confirm("Are you sure, want to delete?");
     if (proceed) {
-      alert(`Slide deleted successfully, id: ${id}`);
+      dispatch(deleteBanner(id));
     }
   };
 
@@ -42,7 +46,11 @@ const SingleBanner = ({ banner, slideNumber }) => {
       <div className="card">
         <h3 className="h3 text-center card-header">Slide {slideNumber}</h3>
         <div>
-          <img src={`data:image/jpeg;base64,${image}`} class="img-fluid rounded-start h-100" alt="..." />
+          <img
+            src={`data:image/jpeg;base64,${image}`}
+            class="img-fluid rounded-start h-100"
+            alt="..."
+          />
         </div>
 
         <div class="card-body">

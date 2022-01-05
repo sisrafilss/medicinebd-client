@@ -33,6 +33,15 @@ const adminDashboard = createSlice({
     setAllBanner: (state, action) => {
       state.banners.allBanner = action.payload;
     },
+    // Delete a banner
+    setDeleteBanner: (state, action) => {
+      if (action.payload.deletedCount > 0) {
+        const index = state.banners.allBanner.findIndex(
+          (bnr) => bnr._id === action.payload._id
+        );
+        state.banners.allBanner.splice(index, 1);
+      }
+    },
   },
 });
 
@@ -42,6 +51,7 @@ export const {
   bannerAddedSuccess,
   setBannerAdded,
   setAllBanner,
+  setDeleteBanner,
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -61,7 +71,7 @@ export const loadBanners = () =>
   apiCallBegan({
     url: "/banners",
     onSuccess: setAllBanner.type,
-  }); 
+  });
 
 // Save Banner to DB
 export const addBannerToDB = (data) =>
@@ -70,4 +80,12 @@ export const addBannerToDB = (data) =>
     method: "post",
     data,
     onSuccess: bannerAddedSuccess.type,
+  });
+
+// Delee Banner
+export const deleteBanner = (id) =>
+  apiCallBegan({
+    url: `/banners/${id}`,
+    method: "delete",
+    onSuccess: setDeleteBanner.type,
   });
