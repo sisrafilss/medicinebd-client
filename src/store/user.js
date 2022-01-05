@@ -33,7 +33,7 @@ const user = createSlice({
       state.admin = action.payload.admin;
     },
   },
-});
+}); 
 
 export const {
   setUser,

@@ -18,6 +18,7 @@ import {
   setLoading,
   setUser,
   upsertUser,
+  checkAdminStatus,
 } from "../store/user";
 
 initializeAuthentication();
@@ -29,6 +30,9 @@ const useFirebase = () => {
   const user = useSelector((state) => state.entities.user.userInfo);
   const authError = useSelector((state) => state.entities.user.error);
   const loading = useSelector((state) => state.entities.user.loading);
+  const admin = useSelector((state) => state.entities.user.admin);
+
+  dispatch(checkAdminStatus(user.email));
 
   // Register new user
   const registerUser = (name, email, password, navigate, location) => {
@@ -168,6 +172,7 @@ const useFirebase = () => {
     user,
     authError,
     loading,
+    admin,
     registerUser,
     loginWithEmailAndPassword,
     signInWithGoogle,

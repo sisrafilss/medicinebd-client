@@ -90,7 +90,6 @@ const adminDashboard = createSlice({
       }
     },
     // Manage Categories
-    // Mange users section
     setCategoriesLoading: (state, action) => {
       state.categories.categoriesLoading = true;
     },
@@ -186,6 +185,7 @@ export const makeAdmin = (email) =>
   });
 
 /* ======================== MANAGE UERS START ======================*/
+// Load Users
 export const loeadUsers = () =>
   apiCallBegan({
     url: "/users",
@@ -193,12 +193,15 @@ export const loeadUsers = () =>
     onSuccess: setUsers.type,
   });
 
+  // Delete user
 export const deleteUser = (id) =>
   apiCallBegan({
     url: `/users/${id}`,
     method: "delete",
     onSuccess: setDeleteUser.type,
   });
+
+
 /* ======================== MANAGE UERS  END ======================*/
 
 /* ======================== MANAGE CATEGORIES  START ======================*/

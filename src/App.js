@@ -11,6 +11,7 @@ import AllProduct from "./pages/AllProduct/AllProduct";
 import ViewDeatilsPage from "./pages/ViewDeatilsPage/ViewDeatilsPage/ViewDeatilsPage";
 import Cart from "./pages/Shared/Cart/Cart";
 import About from "./pages/About/About";
+import useAuth from "./hooks/useAuth";
 
 function App() {
   return (
