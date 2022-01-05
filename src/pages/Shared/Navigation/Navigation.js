@@ -36,7 +36,7 @@ const Navigation = () => {
               <Link to="" className="nav-link topic">
                 About Us
               </Link>
-            </li>
+            </li> 
 
             <li class="nav-item">
               <Link to="/allproduct" className="nav-link topic">
