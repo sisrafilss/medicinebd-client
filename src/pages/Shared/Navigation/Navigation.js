@@ -36,7 +36,7 @@ const Navigation = () => {
               <Link to="" className="nav-link topic">
                 About Us
               </Link>
-            </li> 
+            </li>
 
             <li class="nav-item">
               <Link to="/allproduct" className="nav-link topic">
@@ -78,6 +78,12 @@ const Navigation = () => {
               <span className="text-light"> {user?.displayName} </span>
             </div>
           )}
+
+          <div>
+            <Link to="/cart">
+              <i class="fas fa-shopping-cart"></i>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

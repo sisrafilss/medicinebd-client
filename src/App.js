@@ -9,6 +9,7 @@ import PrivatRoute from "./PrivatRoute/PrivatRoute";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import AllProduct from "./pages/AllProduct/AllProduct";
 import ViewDeatilsPage from "./pages/ViewDeatilsPage/ViewDeatilsPage/ViewDeatilsPage";
+import Cart from "./pages/Shared/Cart/Cart";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/allproduct" element={<AllProduct />} />
       <Route path="/view-detail" element={<ViewDeatilsPage />} />
+      <Route path="/cart" element={<Cart />} />
 
       <Route path="*" element={<PageNotFound />} />
 
