@@ -2,7 +2,6 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
@@ -11,6 +10,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import NestedRoutes from "../NestedRoutes/NestedRoutes";
 import SidebarNavigation from "../SidebarNavigation/SidebarNavigation";
+import logo from "../../../assets/logo/MedicineBD.png";
+import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -24,8 +25,16 @@ const Dashboard = (props) => {
 
   const drawer = (
     <div>
+      <NavLink to="/" style={{ cursor: "pointer" }}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1, mt: 2, ml: 4 }}
+        >
+          <img height="45" width="130" src={logo} alt="" />
+        </Typography>
+      </NavLink>
       <Toolbar />
-      <Divider />
       <List>
         <SidebarNavigation />
       </List>
@@ -39,10 +48,12 @@ const Dashboard = (props) => {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
+        elevation={0}
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          background: "#ffffff !important",
         }}
       >
         <Toolbar>
@@ -55,8 +66,13 @@ const Dashboard = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ color: "#0C0C0C", fontWeight: "600" }}
+          >
+            Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
@@ -105,6 +121,8 @@ const Dashboard = (props) => {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          background: "#E5E5E5",
+          height: "100%",
         }}
       >
         <Toolbar />
