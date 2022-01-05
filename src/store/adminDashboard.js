@@ -98,6 +98,9 @@ const adminDashboard = createSlice({
       state.categories.allCategories = action.payload;
       state.categories.categoriesLoading = false;
     },
+    setAddCategory: (state, action) => {
+      state.categories.allCategories.push(action.payload);
+    },
   },
 });
 
@@ -117,6 +120,7 @@ export const {
   setDeleteUser,
   setCategoriesLoading,
   setCategories,
+  setAddCategory,
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -189,11 +193,19 @@ export const deleteUser = (id) =>
 /* ======================== MANAGE UERS  END ======================*/
 
 /* ======================== MANAGE CATEGORIES  START ======================*/
-export const loadCategories = (data) =>
+export const loadCategories = () =>
   apiCallBegan({
     url: "/categories",
     onStart: setCategoriesLoading.type,
     onSuccess: setCategories.type,
+  });
+
+export const addCategory = (data) =>
+  apiCallBegan({
+    url: "/categories",
+    method: "post",
+    data,
+    onSuccess: setAddCategory.type,
   });
 
 /* ======================== MANAGE CATEGORIES  END ======================*/

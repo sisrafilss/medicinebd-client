@@ -29,38 +29,38 @@ const style = {
 
 const ManageCatagories = () => {
   let i = 1;
-  const dispatch = useDispatch();
-  const allCategories = useSelector(
-    (state) => state.entities.adminDashboard.categories.allCategories
-  );
+  // const dispatch = useDispatch();
+  // const allCategories = useSelector(
+  //   (state) => state.entities.adminDashboard.categories.allCategories
+  // );
 
-  // const allCatagories = [
-  //   {
-  //     id: 1,
-  //     name: "Baby & Mom Care",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Herbal Care",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Homeopathic Care",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Women Care",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Men Care",
-  //   },
-  // ];
+  const allCategories = [
+    {
+      id: 1,
+      name: "Baby & Mom Care",
+    },
+    {
+      id: 2,
+      name: "Herbal Care",
+    },
+    {
+      id: 3,
+      name: "Homeopathic Care",
+    },
+    {
+      id: 4,
+      name: "Women Care",
+    },
+    {
+      id: 5,
+      name: "Men Care",
+    },
+  ];
 
   // Load Categories from DB
-  useEffect(() => {
-    dispatch(loadCategories());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(loadCategories());
+  // }, []);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -90,17 +90,14 @@ const ManageCatagories = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const { categoryName } = data;
-    const catagory = {
-      categoryName,
-    };
-    console.log(catagory);
+    
+    console.log(data);
     //   dispatch(addRentFlat(saleFlatInfo));
 
-    if (true) {
-      Swal.fire("Good job!", "Catagory Added Successfully.", "success");
-      reset();
-    }
+    // if (true) {
+    //   Swal.fire("Good job!", "Catagory Added Successfully.", "success");
+    //   reset();
+    // }
   };
 
   return (
@@ -135,11 +132,11 @@ const ManageCatagories = () => {
               Add
             </button>
           </div>
-          {errors.categoryName && (
+          {/* {errors.categoryName && (
             <span className="text-danger">
               Please write a valid catagory name!
             </span>
-          )}
+          )} */}
         </form>
       </Box>
       {allCategories.length > 0 ? (
