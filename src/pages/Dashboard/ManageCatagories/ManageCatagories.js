@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { loadCategories } from "../../../store/adminDashboard";
+import { addCategory, loadCategories } from "../../../store/adminDashboard";
 import { useSelector } from "react-redux";
 
 const style = {
@@ -29,38 +29,38 @@ const style = {
 
 const ManageCatagories = () => {
   let i = 1;
-  // const dispatch = useDispatch();
-  // const allCategories = useSelector(
-  //   (state) => state.entities.adminDashboard.categories.allCategories
-  // );
+  const dispatch = useDispatch();
+  const allCategories = useSelector(
+    (state) => state.entities.adminDashboard.categories.allCategories
+  );
 
-  const allCategories = [
-    {
-      id: 1,
-      name: "Baby & Mom Care",
-    },
-    {
-      id: 2,
-      name: "Herbal Care",
-    },
-    {
-      id: 3,
-      name: "Homeopathic Care",
-    },
-    {
-      id: 4,
-      name: "Women Care",
-    },
-    {
-      id: 5,
-      name: "Men Care",
-    },
-  ];
+  // const allCategories = [
+  //   {
+  //     id: 1,
+  //     name: "Baby & Mom Care",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Herbal Care",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Homeopathic Care",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Women Care",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Men Care",
+  //   },
+  // ];
 
   // Load Categories from DB
-  // useEffect(() => {
-  //   dispatch(loadCategories());
-  // }, []);
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -90,14 +90,13 @@ const ManageCatagories = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    
     console.log(data);
-    //   dispatch(addRentFlat(saleFlatInfo));
+    dispatch(addCategory(data));
 
-    // if (true) {
-    //   Swal.fire("Good job!", "Catagory Added Successfully.", "success");
-    //   reset();
-    // }
+    if (true) {
+      Swal.fire("Good job!", "Catagory Added Successfully.", "success");
+      reset();
+    }
   };
 
   return (
@@ -118,7 +117,7 @@ const ManageCatagories = () => {
               placeholder="Enter Catagory Name"
               aria-label="Enter Catagory Name"
               aria-describedby="button-addon2"
-              {...register("categoryName", { required: true })}
+              {...register("name", { required: true })}
             />
             <button
               className="btn"
@@ -229,14 +228,14 @@ const ManageCatagories = () => {
               <h2 className="mb-4">Update Catagory Name</h2>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
               <div className="mb-3">
                 <label className="form-label">Catagory Name</label>
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Catagory Name"
-                  {...register("categoryName", { required: true })}
+                  // {...register("categoryName", { required: true })}
                 />
                 {errors.name && (
                   <span className="text-danger">
