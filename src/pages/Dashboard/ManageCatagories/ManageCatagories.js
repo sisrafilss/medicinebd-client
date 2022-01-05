@@ -32,19 +32,19 @@ const ManageCatagories = () => {
       name: "Baby & Mom Care",
     },
     {
-      id: 1,
+      id: 2,
       name: "Herbal Care",
     },
     {
-      id: 1,
+      id: 3,
       name: "Homeopathic Care",
     },
     {
-      id: 1,
+      id: 4,
       name: "Women Care",
     },
     {
-      id: 1,
+      id: 5,
       name: "Men Care",
     },
   ];
@@ -129,64 +129,83 @@ const ManageCatagories = () => {
           )}
         </form>
       </Box>
-      <Box>
-        <Typography
-          variant="h4"
-          sx={{ textAlign: "center", color: "#001E3C", py: 2 }}
-          gutterBottom
-        >
-          Existing Catagories
-        </Typography>
-        {allCatagories.length > 0 && (
-          <TableContainer sx={{ mt: 2 }} component={Paper}>
-            <Table aria-label="simple table">
-              <TableHead sx={{ background: "#001E3C" }}>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 900, color: "#fff" }}>
-                    #
-                  </TableCell>
-                  <TableCell
-                    align="center"
-                    sx={{ fontWeight: 900, color: "#fff" }}
-                  >
-                    Catagory Name
-                  </TableCell>
-                  <TableCell
-                    align="center"
-                    sx={{ fontWeight: 900, color: "#fff" }}
-                  >
-                    Action
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {allCatagories.map((catagory) => (
-                  <TableRow
-                    key={catagory?.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {i++}
+      {allCatagories.length > 0 ? (
+        <Box>
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", color: "#001E3C", py: 2 }}
+            gutterBottom
+          >
+            Existing Catagories
+          </Typography>
+          {allCatagories.length > 0 && (
+            <TableContainer sx={{ mt: 2 }} component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead sx={{ background: "#001E3C" }}>
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 900, color: "#fff" }}>
+                      #
                     </TableCell>
-                    <TableCell align="center">{catagory?.name}</TableCell>
-                    <TableCell align="center">
-                      <button
-                        style={{ border: "none", marginRight: "5px" }}
-                        onClick={() => handleDelete(catagory?.id)}
-                      >
-                        <DeleteIcon sx={{ color: "red" }} />
-                      </button>
-                      <button onClick={handleOpen} style={{ border: "none" }}>
-                        <EditIcon sx={{ color: "blue" }} />
-                      </button>
+                    <TableCell
+                      align="center"
+                      sx={{ fontWeight: 900, color: "#fff" }}
+                    >
+                      Catagory Name
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{ fontWeight: 900, color: "#fff" }}
+                    >
+                      Action
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
-      </Box>
+                </TableHead>
+                <TableBody>
+                  {allCatagories.map((catagory) => (
+                    <TableRow
+                      key={catagory?.id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {i++}
+                      </TableCell>
+                      <TableCell align="center">{catagory?.name}</TableCell>
+                      <TableCell align="center">
+                        <button
+                          style={{ border: "none", marginRight: "5px" }}
+                          onClick={() => handleDelete(catagory?.id)}
+                        >
+                          <DeleteIcon sx={{ color: "red" }} />
+                        </button>
+                        <button onClick={handleOpen} style={{ border: "none" }}>
+                          <EditIcon sx={{ color: "blue" }} />
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </Box>
+      ) : (
+        <Box sx={{ mt: 8 }}>
+          <Typography
+            sx={{
+              fontWeight: 700,
+              mt: 1,
+              color: "red",
+              textAlign: "center",
+            }}
+            variant="h4"
+            component="div"
+          >
+            No Catagory Found!
+          </Typography>
+        </Box>
+      )}
+
+      {/* Modal For Edit Catagory Name */}
       <Modal
         keepMounted
         open={open}
