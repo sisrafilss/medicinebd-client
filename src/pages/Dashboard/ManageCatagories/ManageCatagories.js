@@ -12,7 +12,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addCategory, loadCategories } from "../../../store/adminDashboard";
+import {
+  addCategory,
+  deleteCategory,
+  loadCategories,
+} from "../../../store/adminDashboard";
 import { useSelector } from "react-redux";
 
 const style = {
@@ -73,6 +77,9 @@ const ManageCatagories = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        // Delete category from DB
+        dispatch(deleteCategory(id));
+
         Swal.fire("Deleted!", "Catagory has been deleted.", "success");
       }
     });
@@ -182,7 +189,7 @@ const ManageCatagories = () => {
                       <TableCell align="center">
                         <button
                           style={{ border: "none", marginRight: "5px" }}
-                          onClick={() => handleDelete(catagory?.id)}
+                          onClick={() => handleDelete(catagory?._id)}
                         >
                           <DeleteIcon sx={{ color: "red" }} />
                         </button>

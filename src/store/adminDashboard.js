@@ -101,6 +101,14 @@ const adminDashboard = createSlice({
     setAddCategory: (state, action) => {
       state.categories.allCategories.push(action.payload);
     },
+    setDeleteCategory: (state, action) => {
+      if (action.payload.deletedCount > 0) {
+        const index = state.categories.allCategories.findIndex(
+          (user) => user._id === action.payload._id
+        );
+        state.categories.allCategories.splice(index, 1);
+      }
+    },
   },
 });
 
@@ -121,6 +129,7 @@ export const {
   setCategoriesLoading,
   setCategories,
   setAddCategory,
+  setDeleteCategory
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -193,6 +202,7 @@ export const deleteUser = (id) =>
 /* ======================== MANAGE UERS  END ======================*/
 
 /* ======================== MANAGE CATEGORIES  START ======================*/
+// Load Categories
 export const loadCategories = () =>
   apiCallBegan({
     url: "/categories",
@@ -200,12 +210,21 @@ export const loadCategories = () =>
     onSuccess: setCategories.type,
   });
 
+// Add Category do DB
 export const addCategory = (data) =>
   apiCallBegan({
     url: "/categories",
     method: "post",
     data,
     onSuccess: setAddCategory.type,
+  });
+
+  // Delete Category
+  export const deleteCategory = (id) =>
+  apiCallBegan({
+    url: `/categories/${id}`,
+    method: "delete",
+    onSuccess: setDeleteCategory.type,
   });
 
 /* ======================== MANAGE CATEGORIES  END ======================*/
