@@ -5,23 +5,26 @@ import {
   addBannerToDB,
   loadBanners,
   setBannerAdded,
+  setLoading,
 } from "../../../store/adminDashboard";
 import SingleBanner from "./SingleBanner";
-
-
 
 const ManageBanner = () => {
   const dispatch = useDispatch();
   // Getting banners from store
-  const banners = useSelector(state => state.entities.adminDashboard.banners.allBanner)
+  const banners = useSelector(
+    (state) => state.entities.adminDashboard.banners.allBanner
+  );
   const bannerAdded = useSelector(
     (state) => state.entities.adminDashboard.banners.bannreAdded
   );
+
 
   // Display success message for 5 seconds
   setTimeout(() => {
     dispatch(setBannerAdded({ status: false }));
   }, 5000);
+
 
   let slideNumber = 0;
 
