@@ -13,6 +13,10 @@ const initialState = {
   makeAdmin: {
     adminAddSuccess: false,
   },
+  users: {
+    allUsers: [],
+    usersLoading: false,
+  },
 };
 
 const adminDashboard = createSlice({
@@ -55,6 +59,7 @@ const adminDashboard = createSlice({
     setUpdateBanner: (state, action) => {
       if (action.payload.modifiedCount) alert("Slide Updated Successfully!");
     },
+    // Make Admin Section
     makeAdminSuccess: (state, action) => {
       if (action.payload.modifiedCount > 0) {
         state.makeAdmin.adminAddSuccess = true;
@@ -63,6 +68,14 @@ const adminDashboard = createSlice({
     },
     setMakeAdminStatus: (state, action) => {
       state.makeAdmin.adminAddSuccess = action.payload.status;
+    },
+    // Mange users section
+    setUsersLoading: (state, action) => {
+      state.users.usersLoading = true;
+    },
+    setUsers: (state, action) => {
+      state.users.allUsers = action.payload;
+      state.users.usersLoading = false;
     },
   },
 });
@@ -78,6 +91,8 @@ export const {
   setUpdateBanner,
   makeAdminSuccess,
   setMakeAdminStatus,
+  setUsersLoading,
+  setUsers,
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -131,4 +146,12 @@ export const makeAdmin = (email) =>
     url: `/make-admin/${email}`,
     method: "put",
     onSuccess: makeAdminSuccess.type,
+  });
+
+/* ======================== MANAGE UERS ======================*/
+export const loeadUsers = () =>
+  apiCallBegan({
+    url: "/users",
+    onStart: setUsersLoading.type,
+    onSuccess: setUsers.type,
   });

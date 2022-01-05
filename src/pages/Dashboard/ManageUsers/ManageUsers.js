@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,46 +9,30 @@ import Paper from "@mui/material/Paper";
 import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { loeadUsers } from "../../../store/adminDashboard";
+import { useSelector } from "react-redux";
 
 const ManageUsers = () => {
   let i = 1;
-  const allUsers = [
-    {
-      id: 1,
-      name: "Najmul Ovi",
-      email: "najmul@gmail.com",
-      img: "Najmul_Ovi.jpg",
-      role: "",
-    },
-    {
-      id: 2,
-      name: "Najmul Ovi",
-      email: "najmul@gmail.com",
-      img: "Najmul_Ovi.jpg",
-      role: "admin",
-    },
-    {
-      id: 3,
-      name: "Najmul Ovi",
-      email: "najmul@gmail.com",
-      img: "Najmul_Ovi.jpg",
-      role: "",
-    },
-    {
-      id: 4,
-      name: "Najmul Ovi",
-      email: "najmul@gmail.com",
-      img: "Najmul_Ovi.jpg",
-      role: "admin",
-    },
-    {
-      id: 5,
-      name: "Najmul Ovi",
-      email: "najmul@gmail.com",
-      img: "Najmul_Ovi.jpg",
-      role: "",
-    },
-  ];
+  const dispatch = useDispatch();
+  // const allUsers = [
+  //     id: 5,
+  //     name: "Najmul Ovi",
+  //     email: "najmul@gmail.com",
+  //     img: "Najmul_Ovi.jpg",
+  //     role: "",
+  //   },
+  // ];
+  // Get all users info from redux store
+  const allUsers = useSelector(
+    (state) => state.entities.adminDashboard.users.allUsers
+  );
+
+  // Load all users info from database to reudux store.
+  useEffect(() => {
+    dispatch(loeadUsers());
+  }, []);
 
   const handleDelete = (id) => {
     console.log(id);
@@ -101,7 +85,13 @@ const ManageUsers = () => {
                   </TableCell>
                   <TableCell align="center">{user?.name}</TableCell>
                   <TableCell align="center">{user?.email}</TableCell>
-                  <TableCell align="center">{user?.img}</TableCell>
+                  <TableCell align="center">
+                    <img
+                      src={user?.photoURL}
+                      style={{ width: "40px", height: "40px", borderRadius: '50%' }}
+                      alt={!user.photoURL ? 'Photo Not Availabe' : user.name}
+                    />
+                  </TableCell>
                   <TableCell align="center">
                     {user?.role ? (
                       <span
