@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.css";
 import CarouselChild from "../CarouselChild/CarouselChild";
+import { useDispatch, useSelector } from "react-redux";
+import { loadBanners } from "../../store/userDashboard";
+// import { loadBanners } from "../../store/adminDashboard";
 
 const carouselData = [
   {
@@ -21,14 +24,24 @@ const carouselData = [
 ];
 
 const Header = () => {
+  let slideCount = 1;
+  const dispatch = useDispatch();
+  const banners = useSelector(
+    (state) => state.entities.userDashboard.banners.allBanner
+  );
+
+  useEffect(() => {
+    dispatch(loadBanners());
+  });
+
   return (
     <div
       id="carouselExampleCaptions"
       class="carousel slide"
       data-bs-ride="carousel"
     >
-      <div class="carousel-indicators">
-        <button
+      {/* <div class="carousel-indicators">
+      <button
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide-to="0"
@@ -36,22 +49,22 @@ const Header = () => {
           aria-current="true"
           aria-label="Slide 1"
         ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
+
+        {banners.map((slide) => (
+          <button key={slide._id}
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to={slideCount++}
+            class="active"
+            aria-current="true"
+            aria-label={`Slide ${++slideCount}`}
+          ></button>
+        ))}
+      </div> */}
       <div class="carousel-inner">
-        {carouselData.map((carousel, index) => (
+        {banners.map((carousel, index) => (
           <CarouselChild
+            key={carousel._id}
             active={index === 0 ? true : false}
             carousel={carousel}
           />

@@ -61,7 +61,7 @@ export const loadBanners = () =>
   apiCallBegan({
     url: "/banners",
     onSuccess: setAllBanner.type,
-  });
+  }); 
 
 // Save Banner to DB
 export const addBannerToDB = (data) =>

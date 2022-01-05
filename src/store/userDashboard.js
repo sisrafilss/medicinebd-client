@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api";
 
-
 const initialState = {
   myOrders: [],
   reviewSubmited: true,
+  banners: {
+    allBanner: [],
+  },
 };
 
 const userDashboard = createSlice({
@@ -28,6 +30,10 @@ const userDashboard = createSlice({
     setReviewSubmitedStatus: (state, action) => {
       state.reviewSubmited = action.payload.state;
     },
+    // Set All banner to banners.allBanner
+    setAllBanner: (state, action) => {
+      state.banners.allBanner = action.payload;
+    },
   },
 });
 
@@ -36,6 +42,7 @@ export const {
   deleteOrder,
   reviewSubmited,
   setReviewSubmitedStatus,
+  setAllBanner
 } = userDashboard.actions;
 export default userDashboard.reducer;
 
@@ -64,4 +71,11 @@ export const savedReview = (data) =>
     method: "post",
     data,
     onSuccess: reviewSubmited.type,
+  });
+
+// Load Banners form Database
+export const loadBanners = () =>
+  apiCallBegan({
+    url: "/banners",
+    onSuccess: setAllBanner.type,
   });
