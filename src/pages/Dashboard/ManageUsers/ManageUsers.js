@@ -10,7 +10,7 @@ import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { loeadUsers } from "../../../store/adminDashboard";
+import { deleteUser, loeadUsers } from "../../../store/adminDashboard";
 import { useSelector } from "react-redux";
 
 const ManageUsers = () => {
@@ -36,6 +36,7 @@ const ManageUsers = () => {
 
   const handleDelete = (id) => {
     console.log(id);
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -46,6 +47,8 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        // Delete user from DB and redux store
+        dispatch(deleteUser(id));
         Swal.fire("Deleted!", "User has been deleted.", "success");
         //   setReload(!reload);
       }
@@ -88,8 +91,12 @@ const ManageUsers = () => {
                   <TableCell align="center">
                     <img
                       src={user?.photoURL}
-                      style={{ width: "40px", height: "40px", borderRadius: '50%' }}
-                      alt={!user.photoURL ? 'Photo Not Availabe' : user.name}
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                      }}
+                      alt={!user.photoURL ? "Photo Not Availabe" : user.name}
                     />
                   </TableCell>
                   <TableCell align="center">
@@ -120,7 +127,7 @@ const ManageUsers = () => {
                   <TableCell align="center">
                     <button
                       style={{ border: "none" }}
-                      onClick={() => handleDelete(user?.id)}
+                      onClick={() => handleDelete(user?._id)}
                     >
                       <DeleteIcon sx={{ color: "red" }} />
                     </button>

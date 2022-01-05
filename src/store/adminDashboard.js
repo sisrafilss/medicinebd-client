@@ -77,6 +77,14 @@ const adminDashboard = createSlice({
       state.users.allUsers = action.payload;
       state.users.usersLoading = false;
     },
+    setDeleteUser: (state, action) => {
+      if (action.payload.deletedCount > 0) {
+        const index = state.users.allUsers.findIndex(
+          (user) => user._id === action.payload._id
+        );
+        state.users.allUsers.splice(index, 1);
+      }
+    },
   },
 });
 
@@ -93,6 +101,7 @@ export const {
   setMakeAdminStatus,
   setUsersLoading,
   setUsers,
+  setDeleteUser,
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -154,4 +163,11 @@ export const loeadUsers = () =>
     url: "/users",
     onStart: setUsersLoading.type,
     onSuccess: setUsers.type,
+  });
+
+export const deleteUser = (id) =>
+  apiCallBegan({
+    url: `/users/${id}`,
+    method: "delete",
+    onSuccess: setDeleteUser.type,
   });
