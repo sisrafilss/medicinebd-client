@@ -118,5 +118,13 @@
     "cat_name": "Herbal Care",
     "category": "showrav",
     "price": 65
+  },
+  {
+    "id": 16,
+    "name": "Adovas",
+    "img": "https://i.ibb.co/NsQ4F3m/p2.png",
+    "cat_name": "Herbal Care",
+    "category": "Israfil",
+    "price": 65
   }
 ]

@@ -16,7 +16,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/allproduct" element={<AllProduct />} />
+      <Route path="//all-product" element={<AllProduct />} />
       {/* <Route path="/viewallproduct" element={<ViewAllProduct />} /> */}
       <Route path="*" element={<PageNotFound />} />
 
