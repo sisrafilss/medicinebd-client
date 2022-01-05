@@ -62,6 +62,12 @@ const SidebarNavigation = () => {
           Manage Users
         </NavLink>
       </ListItem>
+      <ListItem button>
+        <NavLink to="manage-catagory" className="nav-link text-secondary">
+          <GroupIcon sx={{ mr: 2 }} />
+          Manage Categories
+        </NavLink>
+      </ListItem>
     </>
   );
 };
