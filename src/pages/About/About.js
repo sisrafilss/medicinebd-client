@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Navigation from "../Shared/Navigation/Navigation";
-
+ 
 import "./About.css";
 
 // https://medsy-modern.vercel.app/_next/static/images/fast-delivery-d1a2ae4a96283c574f087b65dea16637.png
