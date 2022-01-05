@@ -1,17 +1,29 @@
 import { LinearProgress, Stack } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductData, setProductAdded } from "../../../store/adminDashboard";
+import {
+  addProductData,
+  loadCategories,
+  setProductAdded,
+} from "../../../store/adminDashboard";
 import "./AddProduct.css";
 
 const AddProduct = () => {
   // const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
+  // Get Categoris from Store
+  const allCategories = useSelector(
+    (state) => state.entities.adminDashboard.categories.allCategories
+  );
 
   const productAdded = useSelector(
     (state) => state.entities.adminDashboard.products.productAdded
   );
+  // Load Categories from DB
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
 
   // React Hook Form
   const {
@@ -32,7 +44,7 @@ const AddProduct = () => {
 
     // Send form data to Server
     dispatch(addProductData(formData));
-    
+
     reset();
     // setLoader(true);
   };
@@ -81,9 +93,11 @@ const AddProduct = () => {
                   {...register("category", { required: true })}
                 >
                   <option>Select Category</option>
-                  <option value="Baby and Mom Care">Baby and Mom Care</option>
-                  <option value="Harbal">Harbal</option>
-                  <option value="Harbal">Harbal</option>
+                  {allCategories.map((category) => (
+                    <option key={category._id} value={category?.name}>
+                      {category?.name}
+                    </option>
+                  ))}
                 </select>
                 {errors.category && (
                   <span className="text-danger">Please select a category</span>
