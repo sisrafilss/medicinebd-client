@@ -1,52 +1,66 @@
 import { ListItem } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import AddIcon from "@mui/icons-material/Add";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import AppsIcon from "@mui/icons-material/Apps";
+import MessageIcon from "@mui/icons-material/Message";
+import SlideshowIcon from "@mui/icons-material/Slideshow";
+import GroupIcon from "@mui/icons-material/Group";
+import CalendarViewMonthIcon from "@mui/icons-material/CalendarViewMonth";
 
 const SidebarNavigation = () => {
   return (
     <>
       <ListItem button>
-        <Link to="add-product" className="nav-link text-secondary">
+        <NavLink
+          to="add-product"
+          className="nav-link text-secondary"
+          activeClassName="active"
+        >
+          <AddIcon sx={{ mr: 2 }} />
           Add Product
-        </Link>
+        </NavLink>
       </ListItem>
 
       <ListItem button>
-        <Link to="manage-banner" className="nav-link text-secondary">
+        <NavLink to="manage-banner" className="nav-link text-secondary">
+          <SlideshowIcon sx={{ mr: 2 }} />
           Manage Banner
-        </Link>
+        </NavLink>
       </ListItem>
 
       <ListItem button>
-        <Link to="manage-product" className="nav-link text-secondary">
+        <NavLink to="manage-product" className="nav-link text-secondary">
+          <AppsIcon sx={{ mr: 2 }} />
           Manage Product
-        </Link>
+        </NavLink>
       </ListItem>
 
       <ListItem button>
-        <Link to="make-admin" className="nav-link text-secondary">
+        <NavLink to="make-admin" className="nav-link text-secondary">
+          <PersonAddAlt1Icon sx={{ mr: 2 }} />
           Make Admin
-        </Link>
+        </NavLink>
       </ListItem>
       <ListItem button>
-        <Link to="my-orders" className="nav-link text-secondary">
+        <NavLink to="my-orders" className="nav-link text-secondary">
+          <ShoppingBagIcon sx={{ mr: 2 }} />
           My Orders
-        </Link>
+        </NavLink>
       </ListItem>
       <ListItem button>
-        <Link to="review" className="nav-link text-secondary">
+        <NavLink to="review" className="nav-link text-secondary">
+          <MessageIcon sx={{ mr: 2 }} />
           Review
-        </Link>
+        </NavLink>
       </ListItem>
       <ListItem button>
-        <Link to="manage-catagory" className="nav-link text-secondary">
-          Manage Catagory
-        </Link>
-      </ListItem>
-      <ListItem button>
-        <Link to="manage-users" className="nav-link text-secondary">
+        <NavLink to="manage-users" className="nav-link text-secondary">
+          <GroupIcon sx={{ mr: 2 }} />
           Manage Users
-        </Link>
+        </NavLink>
       </ListItem>
     </>
   );
