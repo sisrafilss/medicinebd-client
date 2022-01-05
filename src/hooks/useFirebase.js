@@ -109,7 +109,13 @@ const useFirebase = () => {
         dispatch(setAuthError({ error: "" }));
 
         // Upsert user data to database
-        dispatch(upsertUser({ name: user.displayName, email: user.email }));
+        dispatch(
+          upsertUser({
+            name: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+          })
+        );
 
         // Redirect user to the page where they come from
         redirectInitialPage(navigate, location);
