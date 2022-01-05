@@ -38,29 +38,6 @@ const ManageCatagories = () => {
     (state) => state.entities.adminDashboard.categories.allCategories
   );
 
-  // const allCategories = [
-  //   {
-  //     id: 1,
-  //     name: "Baby & Mom Care",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Herbal Care",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Homeopathic Care",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Women Care",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Men Care",
-  //   },
-  // ];
-
   // Load Categories from DB
   useEffect(() => {
     dispatch(loadCategories());
