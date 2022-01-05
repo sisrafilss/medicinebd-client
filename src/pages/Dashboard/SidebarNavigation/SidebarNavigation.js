@@ -39,8 +39,8 @@ const SidebarNavigation = () => {
         </Link>
       </ListItem>
       <ListItem button>
-        <Link to="manage-users" className="nav-link text-secondary">
-          Manage Users
+        <Link to="manage-catagory" className="nav-link text-secondary">
+          Manage Catagory
         </Link>
       </ListItem>
     </>

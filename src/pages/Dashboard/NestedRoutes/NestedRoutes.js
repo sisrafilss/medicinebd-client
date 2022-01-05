@@ -8,6 +8,7 @@ import MyOrders from "../MyOrders/MyOrders";
 
 import ManageProducts from "../ManageProducts/ManageProducts";
 import Review from "../Review/Review";
+import ManageCatagories from "../ManageCatagories/ManageCatagories";
 import ManageUsers from "../ManageUsers/ManageUsers";
 
 const NestedRoutes = () => {
@@ -34,6 +35,9 @@ const NestedRoutes = () => {
       </Routes>
       <Routes>
         <Route path="review" element={<Review />} />
+      </Routes>
+      <Routes>
+        <Route path="manage-catagory" element={<ManageCatagories />} />
       </Routes>
     </Box>
   );
