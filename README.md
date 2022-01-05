@@ -73,8 +73,8 @@ About Home Solution
  ### Admin Login Info
  * Please use the following email and password to login as an Admin. You can't see the Admin Dashboard without login as an Admin.
  * Firebase:
- * Email:
- * Password:
+ * Email:admin@admin.com
+ * Password:123456
 
 
  ### Login as User
