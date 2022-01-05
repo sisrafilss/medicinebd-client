@@ -8,26 +8,29 @@ import {
 } from "../../../store/adminDashboard";
 import SingleBanner from "./SingleBanner";
 
-
-
 const ManageBanner = () => {
   const dispatch = useDispatch();
-  const banners = useSelector(state => state.entities.adminDashboard.banners.allBanner)
+  // Getting banners from store
+  const banners = useSelector(
+    (state) => state.entities.adminDashboard.banners.allBanner
+  );
   const bannerAdded = useSelector(
     (state) => state.entities.adminDashboard.banners.bannreAdded
   );
+
 
   // Display success message for 5 seconds
   setTimeout(() => {
     dispatch(setBannerAdded({ status: false }));
   }, 5000);
 
+
   let slideNumber = 0;
 
   // Load Banners from Database
   useEffect(() => {
     dispatch(loadBanners());
-  }, []);
+  }, [bannerAdded]);
 
   // React Hook Form for add a slide
   const {
@@ -44,6 +47,7 @@ const ManageBanner = () => {
     formData.append("description", description);
     formData.append("image", image[0]);
 
+    // Send banner data to DB
     dispatch(addBannerToDB(formData));
 
     reset();
@@ -137,6 +141,7 @@ const ManageBanner = () => {
                   <div class="input-group mb-4">
                     <input
                       type="file"
+                      accept="image/*"
                       class="form-control"
                       id="inputGroupFile02"
                       {...register("image", { required: true })}

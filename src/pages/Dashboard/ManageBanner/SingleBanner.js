@@ -1,8 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {
+  deleteBanner,
+  setEditSlide,
+  updateBanner,
+} from "../../../store/adminDashboard";
 
 const SingleBanner = ({ banner, slideNumber }) => {
+  const dispatch = useDispatch();
   const { _id, title, image, description } = banner;
+  const slides = useSelector(
+    (state) => state.entities.adminDashboard.banners.allBanner
+  );
+  const editSlide = useSelector(
+    (state) => state.entities.adminDashboard.banners.editSlide
+  );
 
   // React Hook Form
   const {
@@ -12,29 +27,29 @@ const SingleBanner = ({ banner, slideNumber }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const { category, name, description, image, price } = data;
-    const product = {
-      category,
-      name,
-      image,
-      price,
-      description: description.split("\n"),
-    };
-    console.log(product);
-    //   dispatch(addRentFlat(saleFlatInfo));
+    const { title, description, image } = data;
+    const formData = new FormData();
 
-    if (true) {
-      alert("Product Added Successfully");
-      reset();
-    }
+    formData.append("_id", editSlide._id);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image", image[0]);
+
+    // Send updated data to the server
+    dispatch(updateBanner(formData));
+    reset();
   };
 
   //   Handle Delete Slide
   const handleDeleteSlide = (id) => {
     const proceed = window.confirm("Are you sure, want to delete?");
     if (proceed) {
-      alert(`Slide deleted successfully, id: ${id}`);
+      dispatch(deleteBanner(id));
     }
+  };
+
+  const handleEditSlide = (id) => {
+    dispatch(setEditSlide({ _id: id }));
   };
 
   return (
@@ -42,7 +57,11 @@ const SingleBanner = ({ banner, slideNumber }) => {
       <div className="card">
         <h3 className="h3 text-center card-header">Slide {slideNumber}</h3>
         <div>
-          <img src={`data:image/jpeg;base64,${image}`} class="img-fluid rounded-start h-100" alt="..." />
+          <img
+            src={`data:image/jpeg;base64,${image}`}
+            class="img-fluid rounded-start h-100"
+            alt="..."
+          />
         </div>
 
         <div class="card-body">
@@ -60,6 +79,7 @@ const SingleBanner = ({ banner, slideNumber }) => {
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
+                  onClick={() => handleEditSlide(_id)}
                 >
                   Edit
                 </button>
@@ -81,10 +101,11 @@ const SingleBanner = ({ banner, slideNumber }) => {
       </div>
 
       {/*Modal for Edit Slide  */}
+
       <div
         class="modal fade mt-5"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -109,6 +130,7 @@ const SingleBanner = ({ banner, slideNumber }) => {
                     type="text"
                     className="form-control"
                     placeholder="Slide Title"
+                    defaultValue={editSlide?.title}
                     {...register("title", { required: true })}
                   />
                   {errors.name && (
@@ -124,6 +146,7 @@ const SingleBanner = ({ banner, slideNumber }) => {
                     className="form-control"
                     rows="3"
                     placeholder="Enter a short description"
+                    defaultValue={editSlide?.description}
                     {...register("description", { required: true })}
                   ></textarea>
                   {errors.description && (
@@ -134,12 +157,14 @@ const SingleBanner = ({ banner, slideNumber }) => {
                 </div>
 
                 <div className="mt-4">
-                  <span className="mb-2 d-inline-block">Upload Image</span>
+                  <span className="mb-2 d-inline-block">Change Image</span>
                   <div class="input-group mb-4">
                     <input
                       type="file"
+                      accept="image/*"
                       class="form-control"
                       id="inputGroupFile02"
+                      defaultValue={editSlide.image}
                       {...register("image", { required: true })}
                     />
                     <label class="input-group-text" htmlFor="inputGroupFile02">
