@@ -8,7 +8,7 @@ import PrivatRoute from "./PrivatRoute/PrivatRoute";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import About from "./pages/About/About/About";
 import ViewDeatilsPage from "./pages/ViewDeatilsPage/ViewDeatilsPage/ViewDeatilsPage";
-import AddToCartPage from "./pages/AddToCartPage/AddToCartPage/AddToCartPage";
+// import AddToCartPage from "./pages/AddToCartPage/AddToCartPage/AddToCartPage";
 
 function App() {
   return (
