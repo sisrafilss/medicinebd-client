@@ -1,5 +1,5 @@
 import React from 'react';
-import video from '../../404 error lost in space.mp4';
+import video from '../../assets/video/404-space.mp4';
 import { Link } from "react-router-dom";
 import './PageNotFound.css'
 
