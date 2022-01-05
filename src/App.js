@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import AllProduct from "./pages/AllProduct/AllProduct";
 import ViewDeatilsPage from "./pages/ViewDeatilsPage/ViewDeatilsPage/ViewDeatilsPage";
 import Cart from "./pages/Shared/Cart/Cart";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/allproduct" element={<AllProduct />} />
       <Route path="/view-detail" element={<ViewDeatilsPage />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/about-us" element={<About />} />
 
       <Route path="*" element={<PageNotFound />} />
 
