@@ -1,36 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addBannerToDB,
+  loadBanners,
+  setBannerAdded,
+} from "../../../store/adminDashboard";
 import SingleBanner from "./SingleBanner";
 
-// Placehoder data
-const bannerData = [
-  {
-    _id: 1,
-    title: "Taking Good Care Of Yourself",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius adipisci quae dolorum in molestiae corrupti.",
-    image: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a1.jpg",
-  },
-  {
-    _id: 2,
-    title: "Taking Good Care Of Yourself",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius adipisci quae dolorum in molestiae corrupti.",
-    image: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a2.jpg",
-  },
-  {
-    _id: 3,
-    title: "Taking Good Care Of Yourself",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius adipisci quae dolorum in molestiae corrupti.",
-    image: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a3.jpg",
-  },
-];
+
 
 const ManageBanner = () => {
+  const dispatch = useDispatch();
+  const banners = useSelector(state => state.entities.adminDashboard.banners.allBanner)
+  const bannerAdded = useSelector(
+    (state) => state.entities.adminDashboard.banners.bannreAdded
+  );
+
+  // Display success message for 5 seconds
+  setTimeout(() => {
+    dispatch(setBannerAdded({ status: false }));
+  }, 5000);
+
   let slideNumber = 0;
 
-  // React Hook Form
+  // Load Banners from Database
+  useEffect(() => {
+    dispatch(loadBanners());
+  }, []);
+
+  // React Hook Form for add a slide
   const {
     register,
     handleSubmit,
@@ -38,22 +37,17 @@ const ManageBanner = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const { category, name, description, image, price } = data;
-    const product = {
-      category,
-      name,
-      image,
-      price,
-      description: description.split("\n"),
-    };
-    console.log(product);
-    //   dispatch(addRentFlat(saleFlatInfo));
+    const { title, description, image } = data;
 
-    if (true) {
-      alert("Product Added Successfully");
-      reset();
-    }
-  }; 
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image", image[0]);
+
+    dispatch(addBannerToDB(formData));
+
+    reset();
+  };
 
   return (
     <div>
@@ -62,7 +56,7 @@ const ManageBanner = () => {
       </div>
       <div className="container">
         <div className="row g-4">
-          {bannerData.map((banner) => (
+          {banners.map((banner) => (
             <SingleBanner
               key={banner._id}
               slideNumber={++slideNumber}
@@ -76,7 +70,7 @@ const ManageBanner = () => {
             className="btn btn-lg btn-primary"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#add-slide-form"
           >
             {" "}
             <i class="fa fa-plus"></i> Add Slide
@@ -85,9 +79,10 @@ const ManageBanner = () => {
       </div>
 
       {/*Modal for Add Slide  */}
+
       <div
         class="modal fade mt-5"
-        id="exampleModal"
+        id="add-slide-form"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -169,6 +164,12 @@ const ManageBanner = () => {
                   Close
                 </button>
               </form>
+
+              {bannerAdded && (
+                <div class="alert alert-success mt-4" role="alert">
+                  Slide Added Successfully!
+                </div>
+              )}
             </div>
           </div>
         </div>
