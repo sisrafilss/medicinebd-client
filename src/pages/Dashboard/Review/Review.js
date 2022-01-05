@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../../hooks/useAuth";
 import ReactStars from "react-rating-stars-component";
-import { setReviewSubmitedStatus } from "../../../store/userDashboard";
+import { savedReview, setReviewSubmitedStatus } from "../../../store/userDashboard";
 
 const Review = () => {
   const { user } = useAuth();
@@ -37,8 +37,7 @@ const Review = () => {
       feedback: data.review,
     };
 
-    console.log(review);
-    // dispatch(savedReview(review));
+    dispatch(savedReview(review));
   };
 
   return (

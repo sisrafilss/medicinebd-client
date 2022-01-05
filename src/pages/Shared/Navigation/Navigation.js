@@ -6,8 +6,6 @@ import "./Navigation.css";
 const Navigation = () => {
   const { user, logOut } = useAuth();
 
-  console.log(user);
-
   return (
     <nav class="navbar navbar-expand-lg header-nav shadow-lg">
       <div class="container-fluid">
