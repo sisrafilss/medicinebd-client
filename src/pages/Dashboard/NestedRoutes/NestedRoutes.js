@@ -10,25 +10,61 @@ import ManageProducts from "../ManageProducts/ManageProducts";
 import Review from "../Review/Review";
 import ManageCatagories from "../ManageCatagories/ManageCatagories";
 import ManageUsers from "../ManageUsers/ManageUsers";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 const NestedRoutes = () => {
   return (
     <Box>
       {/* Admin Routes */}
       <Routes>
-        <Route path="add-product" element={<AddProduct />} />
+        <Route
+          path="add-product"
+          element={
+            <AdminRoute>
+              <AddProduct />
+            </AdminRoute>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path="manage-banner" element={<ManageBanner />} />
+        <Route
+          path="manage-banner"
+          element={
+            <AdminRoute>
+              <ManageBanner />
+            </AdminRoute>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path="manage-product" element={<ManageProducts />} />
+        <Route
+          path="manage-product"
+          element={
+            <AdminRoute>
+              <ManageProducts />
+            </AdminRoute>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path="make-admin" element={<MakeAdmin />} />
+        <Route
+          path="make-admin"
+          element={
+            <AdminRoute>
+              <MakeAdmin />
+            </AdminRoute>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path="manage-users" element={<ManageUsers />} />
+        <Route
+          path="manage-users"
+          element={
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          }
+        />
       </Routes>
       <Routes>
         <Route path="my-orders" element={<MyOrders />} />
@@ -37,7 +73,14 @@ const NestedRoutes = () => {
         <Route path="review" element={<Review />} />
       </Routes>
       <Routes>
-        <Route path="manage-catagory" element={<ManageCatagories />} />
+        <Route
+          path="manage-catagory"
+          element={
+            <AdminRoute>
+              <ManageCatagories />
+            </AdminRoute>
+          }
+        />
       </Routes>
     </Box>
   );

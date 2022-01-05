@@ -12,10 +12,12 @@ import NestedRoutes from "../NestedRoutes/NestedRoutes";
 import SidebarNavigation from "../SidebarNavigation/SidebarNavigation";
 import logo from "../../../assets/logo/MedicineBD.png";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
+  const { user, admin } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -34,7 +36,8 @@ const Dashboard = (props) => {
           <img height="45" width="130" src={logo} alt="" />
         </Typography>
       </NavLink>
-      <Toolbar />
+      {/* <Toolbar /> */}
+
       <List>
         <SidebarNavigation />
       </List>
@@ -72,7 +75,20 @@ const Dashboard = (props) => {
             component="div"
             sx={{ color: "#0C0C0C", fontWeight: "600" }}
           >
-            Dashboard
+            {user.email && (
+              <div className="mx-3 text-center">
+                <img
+                  style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                  src={user?.photoURL}
+                  alt=""
+                />
+
+                <span className="">
+                  {" "}
+                  {user?.displayName} | {admin ? "Admin" : "Subscriber"}
+                </span>
+              </div>
+            )}
           </Typography>
         </Toolbar>
       </AppBar>

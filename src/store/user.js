@@ -3,7 +3,7 @@ import { apiCallBegan } from "./api";
 
 const initialState = {
   userInfo: {},
-  loading: null,
+  loading: false,
   error: "",
   apiResponse: {},
   admin: null,

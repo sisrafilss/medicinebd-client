@@ -136,6 +136,7 @@ const useFirebase = () => {
 
   // Observing user state
   useEffect(() => {
+    // dispatch(setLoading({ loading: true }));
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(
@@ -145,6 +146,7 @@ const useFirebase = () => {
             photoURL: user.photoURL,
           })
         );
+        // dispatch(setLoading({ loading: false }));
       } else {
       }
     });

@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import "./Navigation.css";
 
 const Navigation = () => {
-  const { user, logOut } = useAuth();
+  const { user, admin, logOut } = useAuth();
 
   return (
     <nav class="navbar navbar-expand-lg header-nav shadow-lg">
@@ -75,7 +75,10 @@ const Navigation = () => {
                 src={user?.photoURL}
                 alt=""
               />
-              <span className="text-light"> {user?.displayName} </span>
+              <span className="text-light">
+                {" "}
+                {user?.displayName} | {admin ? "Admin" : "Subscriber"}
+              </span>
             </div>
           )}
 

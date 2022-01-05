@@ -1,22 +1,24 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
-
 
 const AdminRoute = ({ children }) => {
   const { user, admin } = useAuth();
   const location = useLocation();
 
-  if (!admin) {
+//   Loading Spinner
+  const loading = useSelector((state) => state.entities.user.loading);
+  if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center">
-        <div className="spinner-border text-primary"></div>
+        <div  className="spinner-border text-primary"></div>
       </div>
     );
   }
 
-  if (!admin) {
-    return <Navigate to="/login" state={{ from: location }} />;
+  if (!user.email && !admin) {
+    return <Navigate to="/" state={{ from: location }} />;
   }
 
   return children;
