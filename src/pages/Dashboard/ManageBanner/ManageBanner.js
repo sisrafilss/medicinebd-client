@@ -5,7 +5,6 @@ import {
   addBannerToDB,
   loadBanners,
   setBannerAdded,
-  setLoading,
 } from "../../../store/adminDashboard";
 import SingleBanner from "./SingleBanner";
 
@@ -142,6 +141,7 @@ const ManageBanner = () => {
                   <div class="input-group mb-4">
                     <input
                       type="file"
+                      accept="image/*"
                       class="form-control"
                       id="inputGroupFile02"
                       {...register("image", { required: true })}

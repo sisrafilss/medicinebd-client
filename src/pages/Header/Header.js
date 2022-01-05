@@ -3,28 +3,8 @@ import "./Header.css";
 import CarouselChild from "../CarouselChild/CarouselChild";
 import { useDispatch, useSelector } from "react-redux";
 import { loadBanners } from "../../store/userDashboard";
-// import { loadBanners } from "../../store/adminDashboard";
-
-const carouselData = [
-  {
-    title: "",
-    description: "",
-    pic: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a1.jpg",
-  },
-  {
-    title: "",
-    description: "",
-    pic: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a2.jpg",
-  },
-  {
-    title: "",
-    description: "",
-    pic: "https://macy.7uptheme.net/wp-content/uploads/2019/09/a3.jpg",
-  },
-];
 
 const Header = () => {
-  let slideCount = 1;
   const dispatch = useDispatch();
   const banners = useSelector(
     (state) => state.entities.userDashboard.banners.allBanner

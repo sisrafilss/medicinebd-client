@@ -50,7 +50,7 @@ const adminDashboard = createSlice({
       );
     },
     setUpdateBanner: (state, action) => {
-      console.log(action.payload);
+      if (action.payload.modifiedCount) alert("Slide Updated Successfully!");
     },
   },
 });
@@ -64,7 +64,6 @@ export const {
   setDeleteBanner,
   setEditSlide,
   setUpdateBanner,
-  setLoading
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
