@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardMedia, Rating } from "@mui/material";
 
 const Review = (props) => {
-  const { name, img, text, rating } = props.review;
+  const { name, image, feedback, rating } = props.review;
   return (
     <Grid sx={{ mt: 4 }}>
       <Card sx={{ minWidth: 275, border: 0, boxShadow: 0 }}>
@@ -17,7 +17,7 @@ const Review = (props) => {
             margin: "0 auto",
             padding: "8px",
           }}
-          image={img}
+          image={image}
           alt="green iguana"
         />
         <CardContent sx={{ px: 2 }}>
@@ -26,7 +26,7 @@ const Review = (props) => {
             variant="body2"
           >
             <span>&#10077;</span>
-            {text}
+            {feedback}
             <span>&#10078;</span>
           </Typography>
           <Typography sx={{ textAlign: "center" }} variant="body2">

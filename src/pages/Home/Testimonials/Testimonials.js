@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Slider from "react-slick";
 import Review from "./Review";
+import { useDispatch, useSelector } from "react-redux";
+import { loadTestimonials } from "../../../store/userDashboard";
 
 const Testimonials = () => {
-  const [allReviews, setAllReviews] = useState([]);
+  const dispatch = useDispatch();
+  // const [allReviews, setAllReviews] = useState([]);
+  const testimonials = useSelector(
+    (state) => state.entities.userDashboard.testimonials.allTestimonial
+  );
+  const testimonialsLoading = useSelector(
+    (state) => state.entities.userDashboard.testimonials.testimonialLoading
+  );
 
   //Get All Reviews
   useEffect(() => {
-    fetch("./userReviews.json")
-      .then((res) => res.json())
-      .then((data) => setAllReviews(data));
+    dispatch(loadTestimonials());
   }, []);
 
   var settings = {
@@ -69,8 +76,8 @@ const Testimonials = () => {
         </Typography>
         <Grid>
           <Slider {...settings}>
-            {allReviews.map((review) => (
-              <Review key={review.id} review={review}></Review>
+            {testimonials.map((review) => (
+              <Review key={review._id} review={review}></Review>
             ))}
           </Slider>
         </Grid>

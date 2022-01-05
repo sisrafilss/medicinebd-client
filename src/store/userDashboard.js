@@ -3,9 +3,13 @@ import { apiCallBegan } from "./api";
 
 const initialState = {
   myOrders: [],
-  reviewSubmited: true,
+  reviewSubmited: false,
   banners: {
     allBanner: [],
+  },
+  testimonials: {
+    allTestimonial: [],
+    testimonialsLoading: false,
   },
 };
 
@@ -34,6 +38,14 @@ const userDashboard = createSlice({
     setAllBanner: (state, action) => {
       state.banners.allBanner = action.payload;
     },
+    // Set Testimonials
+    testimoanialsApiStarted: (state, action) => {
+      state.testimonials.testimonialsLoading = true;
+    },
+    setLoadTestimonials: (state, action) => {
+      state.testimonials.allTestimonial = action.payload;
+      state.testimonials.testimonialsLoading = false;
+    },
   },
 });
 
@@ -42,7 +54,9 @@ export const {
   deleteOrder,
   reviewSubmited,
   setReviewSubmitedStatus,
-  setAllBanner
+  setAllBanner,
+  testimoanialsApiStarted,
+  setLoadTestimonials,
 } = userDashboard.actions;
 export default userDashboard.reducer;
 
@@ -67,10 +81,18 @@ export const cancellAnOrder = (id) =>
 // Review
 export const savedReview = (data) =>
   apiCallBegan({
-    url: "/reviews",
+    url: "/add-review",
     method: "post",
     data,
     onSuccess: reviewSubmited.type,
+  });
+
+// Load Testimonials
+export const loadTestimonials = () =>
+  apiCallBegan({
+    url: "/Testimonials",
+    onStart: testimoanialsApiStarted.type,
+    onSuccess: setLoadTestimonials.type,
   });
 
 // Load Banners form Database
