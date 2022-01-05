@@ -10,6 +10,9 @@ const initialState = {
     bannreAdded: false,
     editSlide: {},
   },
+  makeAdmin: {
+    adminAddSuccess: false,
+  },
 };
 
 const adminDashboard = createSlice({
@@ -52,6 +55,15 @@ const adminDashboard = createSlice({
     setUpdateBanner: (state, action) => {
       if (action.payload.modifiedCount) alert("Slide Updated Successfully!");
     },
+    makeAdminSuccess: (state, action) => {
+      if (action.payload.modifiedCount > 0) {
+        state.makeAdmin.adminAddSuccess = true;
+        console.log(action.payload.modifiedCount);
+      }
+    },
+    setMakeAdminStatus: (state, action) => {
+      state.makeAdmin.adminAddSuccess = action.payload.status;
+    },
   },
 });
 
@@ -64,6 +76,8 @@ export const {
   setDeleteBanner,
   setEditSlide,
   setUpdateBanner,
+  makeAdminSuccess,
+  setMakeAdminStatus,
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -109,4 +123,12 @@ export const updateBanner = (data) =>
     method: "put",
     data,
     onSuccess: setUpdateBanner.type,
+  });
+
+// Make an Admin
+export const makeAdmin = (email) =>
+  apiCallBegan({
+    url: `/make-admin/${email}`,
+    method: "put",
+    onSuccess: makeAdminSuccess.type,
   });

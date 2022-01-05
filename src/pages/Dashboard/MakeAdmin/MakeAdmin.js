@@ -1,20 +1,28 @@
 import { Alert, Button, Box, TextField, Typography, Grid } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { makeAdmin, setMakeAdminStatus } from "../../../store/adminDashboard";
 
 const MakeAdmin = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
+  const success = useSelector(
+    (state) => state.entities.adminDashboard.makeAdmin.adminAddSuccess
+  );
+
+  setTimeout(() => {
+    dispatch(setMakeAdminStatus({ status: false }));
+  }, 5000);
 
   const handleOnBlur = (e) => {
     setEmail(e.target.value);
   };
 
   const handleAdminSubmit = (e) => {
-    const user = { email };
-    console.log(user);
-    setSuccess(true);
-
     e.preventDefault();
+    dispatch(makeAdmin(email));
+    // console.log(user);
   };
 
   return (
