@@ -38,6 +38,11 @@ const SidebarNavigation = () => {
           Review
         </Link>
       </ListItem>
+      <ListItem button>
+        <Link to="manage-catagory" className="nav-link text-secondary">
+          Manage Catagory
+        </Link>
+      </ListItem>
     </>
   );
 };
