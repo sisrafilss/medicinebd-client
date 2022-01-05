@@ -18,7 +18,7 @@ const BabyProducts = () => {
       });
   }, []);
 
-  const babyProducts = products.filter((p) => p.catagory === "baby");
+  const babyProducts = products.filter((p) => p.category === "baby");
 
   const homeBabyProducts = babyProducts.slice(0, 3);
 

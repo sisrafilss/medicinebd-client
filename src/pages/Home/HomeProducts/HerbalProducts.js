@@ -18,7 +18,7 @@ const HerbalProducts = () => {
       });
   }, []);
 
-  const herbalProducts = products.filter((p) => p.catagory === "herbal");
+  const herbalProducts = products.filter((p) => p.category === "herbal");
 
   const homeHerbalProducts = herbalProducts.slice(0, 3);
 
