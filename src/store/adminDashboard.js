@@ -17,6 +17,10 @@ const initialState = {
     allUsers: [],
     usersLoading: false,
   },
+  categories: {
+    allCategories: [],
+    categoriesLoading: false,
+  },
 };
 
 const adminDashboard = createSlice({
@@ -85,6 +89,15 @@ const adminDashboard = createSlice({
         state.users.allUsers.splice(index, 1);
       }
     },
+    // Manage Categories
+    // Mange users section
+    setCategoriesLoading: (state, action) => {
+      state.categories.categoriesLoading = true;
+    },
+    setCategories: (state, action) => {
+      state.categories.allCategories = action.payload;
+      state.categories.categoriesLoading = false;
+    },
   },
 });
 
@@ -102,6 +115,8 @@ export const {
   setUsersLoading,
   setUsers,
   setDeleteUser,
+  setCategoriesLoading,
+  setCategories,
 } = adminDashboard.actions;
 export default adminDashboard.reducer;
 
@@ -157,7 +172,7 @@ export const makeAdmin = (email) =>
     onSuccess: makeAdminSuccess.type,
   });
 
-/* ======================== MANAGE UERS ======================*/
+/* ======================== MANAGE UERS START ======================*/
 export const loeadUsers = () =>
   apiCallBegan({
     url: "/users",
@@ -171,3 +186,14 @@ export const deleteUser = (id) =>
     method: "delete",
     onSuccess: setDeleteUser.type,
   });
+/* ======================== MANAGE UERS  END ======================*/
+
+/* ======================== MANAGE CATEGORIES  START ======================*/
+export const loadCategories = (data) =>
+  apiCallBegan({
+    url: "/categories",
+    onStart: setCategoriesLoading.type,
+    onSuccess: setCategories.type,
+  });
+
+/* ======================== MANAGE CATEGORIES  END ======================*/

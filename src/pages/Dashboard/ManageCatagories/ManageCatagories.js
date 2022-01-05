@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,6 +11,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { loadCategories } from "../../../store/adminDashboard";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -26,28 +29,38 @@ const style = {
 
 const ManageCatagories = () => {
   let i = 1;
-  const allCatagories = [
-    {
-      id: 1,
-      name: "Baby & Mom Care",
-    },
-    {
-      id: 2,
-      name: "Herbal Care",
-    },
-    {
-      id: 3,
-      name: "Homeopathic Care",
-    },
-    {
-      id: 4,
-      name: "Women Care",
-    },
-    {
-      id: 5,
-      name: "Men Care",
-    },
-  ];
+  const dispatch = useDispatch();
+  const allCategories = useSelector(
+    (state) => state.entities.adminDashboard.categories.allCategories
+  );
+
+  // const allCatagories = [
+  //   {
+  //     id: 1,
+  //     name: "Baby & Mom Care",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Herbal Care",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Homeopathic Care",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Women Care",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Men Care",
+  //   },
+  // ];
+
+  // Load Categories from DB
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -129,7 +142,7 @@ const ManageCatagories = () => {
           )}
         </form>
       </Box>
-      {allCatagories.length > 0 ? (
+      {allCategories.length > 0 ? (
         <Box>
           <Typography
             variant="h4"
@@ -138,7 +151,7 @@ const ManageCatagories = () => {
           >
             Existing Catagories
           </Typography>
-          {allCatagories.length > 0 && (
+          {allCategories.length > 0 && (
             <TableContainer sx={{ mt: 2 }} component={Paper}>
               <Table aria-label="simple table">
                 <TableHead sx={{ background: "#001E3C" }}>
@@ -161,9 +174,9 @@ const ManageCatagories = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {allCatagories.map((catagory) => (
+                  {allCategories.map((catagory) => (
                     <TableRow
-                      key={catagory?.id}
+                      key={catagory?._id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
